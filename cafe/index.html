@@ -1,0 +1,360 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>半岛咖啡 Peninsula Coffee</title>
+<style>
+@font-face {
+  font-family: 'Noto Serif SC';
+  font-style: normal;
+  font-weight: 400;
+  src: url(fonts/serif1.woff2) format('woff2');
+  unicode-range: U+21-23, U+25-49, U+4c-5a, U+61-7b, U+7d, U+a5, U+a9, U+b7, U+2013, U+3001-3002, U+4e00, U+4e0a-4e0b, U+4e0d-4e0e, U+4e1a, U+4e24, U+4e2d, U+4e5f, U+4e73, U+4e8c, U+4e8e, U+4e94, U+4ea4, U+4eae, U+4eba, U+4ee3, U+4eec, U+4efd, U+4f4d-4f4e, U+4f60, U+4f8b, U+505a, U+505c, U+5148, U+514b, U+5165, U+5168, U+516d, U+5173, U+517b, U+51b0, U+51b2, U+51b7, U+51c0, U+51fa, U+5206, U+521a, U+5229, U+5230, U+5236, U+523b, U+529b, U+52a0, U+52a8, U+5305, U+533a, U+5348, U+534a, U+5355-5357, U+5374, U+53cc, U+53d1, U+53d6, U+53e3, U+53ea, U+53ef-53f0, U+53f7, U+540e, U+5427, U+5468, U+5473, U+548c, U+5496, U+54b8, U+552e, U+5561, U+559d, U+56de, U+56fa, U+56fd, U+5706, U+5728, U+5730, U+573a, U+5740, U+5750, U+5757, U+575a, U+5883, U+58eb, U+5916, U+5929, U+594f, U+5976, U+597d, U+5b50, U+5b63, U+5b8c, U+5b9a, U+5ba2, U+5bb6, U+5bf9, U+5c0f, U+5c31, U+5c40, U+5c42, U+5c9b, U+5de7, U+5df1, U+5df4, U+5e0c, U+5e26, U+5e72, U+5e97, U+5ea7, U+5f00, U+5f0f, U+5fc3, U+5feb, U+610f, U+613f, U+6162, U+6211, U+624b, U+6279, U+628a, U+62db, U+62fc, U+62ff, U+6307, U+63a8, U+6446, U+64ae, U+6536, U+653e, U+65af, U+65e5, U+65e7, U+65e9, U+65f6, U+660e, U+662f, U+66f4, U+66ff, U+6709, U+671b, U+6728, U+673a, U+6765, U+676f, U+679c, U+67d1, U+67e5, U+680b, U+6842, U+697c, U+6a58, U+6b3e, U+6b65, U+6bcf, U+6bd4, U+6c14, U+6c42, U+6cb9, U+6cd5, U+6ce1, U+6d41, U+6d53, U+6d77, U+6da6, U+6e05, U+6e29, U+6e7e, U+6fb3, U+7089, U+70b9, U+70d8, U+70e4, U+7119, U+7126, U+719f, U+71ac, U+71d5, U+724c, U+725b, U+7269, U+73af-73b0, U+7518, U+751c, U+7535, U+7559, U+767d, U+7684, U+76ae, U+76d0, U+770b, U+7a97, U+7ad9, U+7cd5-7cd6, U+7cfb, U+7ebf, U+7ec6, U+7ed9, U+7f29, U+7f8e, U+8001, U+8010, U+8036, U+8054, U+80fd, U+817b, U+81ea, U+81f3, U+822c, U+8282, U+829d, U+82b1, U+8309, U+8350, U+8389, U+83dc, U+83f2, U+8403, U+8425, U+843d, U+86cb, U+8702, U+871c, U+884c, U+8857, U+89d2, U+8ba2, U+8bdd, U+8bfb, U+8c37, U+8c46, U+8d28, U+8d77, U+8def, U+8f66, U+8f6c, U+8fdb, U+8ffd, U+901a, U+90a3, U+90ae, U+90e8, U+914d, U+9165, U+9175, U+9178, U+91cc, U+91cf, U+949f, U+94c1, U+957f, U+95e8, U+95f4, U+9605, U+9650, U+96ea, U+975e, U+9760, U+9762, U+9882, U+9884, U+98ce, U+9986, U+9999, U+9ad8, U+9ea6, U+9ec4, U+9ed1, U+ff08-ff09, U+ff0c, U+ff1b;
+}
+@font-face {
+  font-family: 'Noto Serif SC';
+  font-style: normal;
+  font-weight: 600;
+  src: url(fonts/serif2.woff2) format('woff2');
+  unicode-range: U+21-23, U+25-49, U+4c-5a, U+61-7b, U+7d, U+a5, U+a9, U+b7, U+2013, U+3001-3002, U+4e00, U+4e0a-4e0b, U+4e0d-4e0e, U+4e1a, U+4e24, U+4e2d, U+4e5f, U+4e73, U+4e8c, U+4e8e, U+4e94, U+4ea4, U+4eae, U+4eba, U+4ee3, U+4eec, U+4efd, U+4f4d-4f4e, U+4f60, U+4f8b, U+505a, U+505c, U+5148, U+514b, U+5165, U+5168, U+516d, U+5173, U+517b, U+51b0, U+51b2, U+51b7, U+51c0, U+51fa, U+5206, U+521a, U+5229, U+5230, U+5236, U+523b, U+529b, U+52a0, U+52a8, U+5305, U+533a, U+5348, U+534a, U+5355-5357, U+5374, U+53cc, U+53d1, U+53d6, U+53e3, U+53ea, U+53ef-53f0, U+53f7, U+540e, U+5427, U+5468, U+5473, U+548c, U+5496, U+54b8, U+552e, U+5561, U+559d, U+56de, U+56fa, U+56fd, U+5706, U+5728, U+5730, U+573a, U+5740, U+5750, U+5757, U+575a, U+5883, U+58eb, U+5916, U+5929, U+594f, U+5976, U+597d, U+5b50, U+5b63, U+5b8c, U+5b9a, U+5ba2, U+5bb6, U+5bf9, U+5c0f, U+5c31, U+5c40, U+5c42, U+5c9b, U+5de7, U+5df1, U+5df4, U+5e0c, U+5e26, U+5e72, U+5e97, U+5ea7, U+5f00, U+5f0f, U+5fc3, U+5feb, U+610f, U+613f, U+6162, U+6211, U+624b, U+6279, U+628a, U+62db, U+62fc, U+62ff, U+6307, U+63a8, U+6446, U+64ae, U+6536, U+653e, U+65af, U+65e5, U+65e7, U+65e9, U+65f6, U+660e, U+662f, U+66f4, U+66ff, U+6709, U+671b, U+6728, U+673a, U+6765, U+676f, U+679c, U+67d1, U+67e5, U+680b, U+6842, U+697c, U+6a58, U+6b3e, U+6b65, U+6bcf, U+6bd4, U+6c14, U+6c42, U+6cb9, U+6cd5, U+6ce1, U+6d41, U+6d53, U+6d77, U+6da6, U+6e05, U+6e29, U+6e7e, U+6fb3, U+7089, U+70b9, U+70d8, U+70e4, U+7119, U+7126, U+719f, U+71ac, U+71d5, U+724c, U+725b, U+7269, U+73af-73b0, U+7518, U+751c, U+7535, U+7559, U+767d, U+7684, U+76ae, U+76d0, U+770b, U+7a97, U+7ad9, U+7cd5-7cd6, U+7cfb, U+7ebf, U+7ec6, U+7ed9, U+7f29, U+7f8e, U+8001, U+8010, U+8036, U+8054, U+80fd, U+817b, U+81ea, U+81f3, U+822c, U+8282, U+829d, U+82b1, U+8309, U+8350, U+8389, U+83dc, U+83f2, U+8403, U+8425, U+843d, U+86cb, U+8702, U+871c, U+884c, U+8857, U+89d2, U+8ba2, U+8bdd, U+8bfb, U+8c37, U+8c46, U+8d28, U+8d77, U+8def, U+8f66, U+8f6c, U+8fdb, U+8ffd, U+901a, U+90a3, U+90ae, U+90e8, U+914d, U+9165, U+9175, U+9178, U+91cc, U+91cf, U+949f, U+94c1, U+957f, U+95e8, U+95f4, U+9605, U+9650, U+96ea, U+975e, U+9760, U+9762, U+9882, U+9884, U+98ce, U+9986, U+9999, U+9ad8, U+9ea6, U+9ec4, U+9ed1, U+ff08-ff09, U+ff0c, U+ff1b;
+}
+@font-face {
+  font-family: 'Noto Serif SC';
+  font-style: normal;
+  font-weight: 700;
+  src: url(fonts/serif3.woff2) format('woff2');
+  unicode-range: U+21-23, U+25-49, U+4c-5a, U+61-7b, U+7d, U+a5, U+a9, U+b7, U+2013, U+3001-3002, U+4e00, U+4e0a-4e0b, U+4e0d-4e0e, U+4e1a, U+4e24, U+4e2d, U+4e5f, U+4e73, U+4e8c, U+4e8e, U+4e94, U+4ea4, U+4eae, U+4eba, U+4ee3, U+4eec, U+4efd, U+4f4d-4f4e, U+4f60, U+4f8b, U+505a, U+505c, U+5148, U+514b, U+5165, U+5168, U+516d, U+5173, U+517b, U+51b0, U+51b2, U+51b7, U+51c0, U+51fa, U+5206, U+521a, U+5229, U+5230, U+5236, U+523b, U+529b, U+52a0, U+52a8, U+5305, U+533a, U+5348, U+534a, U+5355-5357, U+5374, U+53cc, U+53d1, U+53d6, U+53e3, U+53ea, U+53ef-53f0, U+53f7, U+540e, U+5427, U+5468, U+5473, U+548c, U+5496, U+54b8, U+552e, U+5561, U+559d, U+56de, U+56fa, U+56fd, U+5706, U+5728, U+5730, U+573a, U+5740, U+5750, U+5757, U+575a, U+5883, U+58eb, U+5916, U+5929, U+594f, U+5976, U+597d, U+5b50, U+5b63, U+5b8c, U+5b9a, U+5ba2, U+5bb6, U+5bf9, U+5c0f, U+5c31, U+5c40, U+5c42, U+5c9b, U+5de7, U+5df1, U+5df4, U+5e0c, U+5e26, U+5e72, U+5e97, U+5ea7, U+5f00, U+5f0f, U+5fc3, U+5feb, U+610f, U+613f, U+6162, U+6211, U+624b, U+6279, U+628a, U+62db, U+62fc, U+62ff, U+6307, U+63a8, U+6446, U+64ae, U+6536, U+653e, U+65af, U+65e5, U+65e7, U+65e9, U+65f6, U+660e, U+662f, U+66f4, U+66ff, U+6709, U+671b, U+6728, U+673a, U+6765, U+676f, U+679c, U+67d1, U+67e5, U+680b, U+6842, U+697c, U+6a58, U+6b3e, U+6b65, U+6bcf, U+6bd4, U+6c14, U+6c42, U+6cb9, U+6cd5, U+6ce1, U+6d41, U+6d53, U+6d77, U+6da6, U+6e05, U+6e29, U+6e7e, U+6fb3, U+7089, U+70b9, U+70d8, U+70e4, U+7119, U+7126, U+719f, U+71ac, U+71d5, U+724c, U+725b, U+7269, U+73af-73b0, U+7518, U+751c, U+7535, U+7559, U+767d, U+7684, U+76ae, U+76d0, U+770b, U+7a97, U+7ad9, U+7cd5-7cd6, U+7cfb, U+7ebf, U+7ec6, U+7ed9, U+7f29, U+7f8e, U+8001, U+8010, U+8036, U+8054, U+80fd, U+817b, U+81ea, U+81f3, U+822c, U+8282, U+829d, U+82b1, U+8309, U+8350, U+8389, U+83dc, U+83f2, U+8403, U+8425, U+843d, U+86cb, U+8702, U+871c, U+884c, U+8857, U+89d2, U+8ba2, U+8bdd, U+8bfb, U+8c37, U+8c46, U+8d28, U+8d77, U+8def, U+8f66, U+8f6c, U+8fdb, U+8ffd, U+901a, U+90a3, U+90ae, U+90e8, U+914d, U+9165, U+9175, U+9178, U+91cc, U+91cf, U+949f, U+94c1, U+957f, U+95e8, U+95f4, U+9605, U+9650, U+96ea, U+975e, U+9760, U+9762, U+9882, U+9884, U+98ce, U+9986, U+9999, U+9ad8, U+9ea6, U+9ec4, U+9ed1, U+ff08-ff09, U+ff0c, U+ff1b;
+}
+@font-face {
+  font-family: 'Cormorant Garamond';
+  font-style: italic;
+  font-weight: 500;
+  src: url(fonts/latin1.woff2) format('woff2');
+  unicode-range: U+21-23, U+25-49, U+4c-5a, U+61-7b, U+7d, U+a5, U+a9, U+b7, U+2013, U+3001-3002, U+4e00, U+4e0a-4e0b, U+4e0d-4e0e, U+4e1a, U+4e24, U+4e2d, U+4e5f, U+4e73, U+4e8c, U+4e8e, U+4e94, U+4ea4, U+4eae, U+4eba, U+4ee3, U+4eec, U+4efd, U+4f4d-4f4e, U+4f60, U+4f8b, U+505a, U+505c, U+5148, U+514b, U+5165, U+5168, U+516d, U+5173, U+517b, U+51b0, U+51b2, U+51b7, U+51c0, U+51fa, U+5206, U+521a, U+5229, U+5230, U+5236, U+523b, U+529b, U+52a0, U+52a8, U+5305, U+533a, U+5348, U+534a, U+5355-5357, U+5374, U+53cc, U+53d1, U+53d6, U+53e3, U+53ea, U+53ef-53f0, U+53f7, U+540e, U+5427, U+5468, U+5473, U+548c, U+5496, U+54b8, U+552e, U+5561, U+559d, U+56de, U+56fa, U+56fd, U+5706, U+5728, U+5730, U+573a, U+5740, U+5750, U+5757, U+575a, U+5883, U+58eb, U+5916, U+5929, U+594f, U+5976, U+597d, U+5b50, U+5b63, U+5b8c, U+5b9a, U+5ba2, U+5bb6, U+5bf9, U+5c0f, U+5c31, U+5c40, U+5c42, U+5c9b, U+5de7, U+5df1, U+5df4, U+5e0c, U+5e26, U+5e72, U+5e97, U+5ea7, U+5f00, U+5f0f, U+5fc3, U+5feb, U+610f, U+613f, U+6162, U+6211, U+624b, U+6279, U+628a, U+62db, U+62fc, U+62ff, U+6307, U+63a8, U+6446, U+64ae, U+6536, U+653e, U+65af, U+65e5, U+65e7, U+65e9, U+65f6, U+660e, U+662f, U+66f4, U+66ff, U+6709, U+671b, U+6728, U+673a, U+6765, U+676f, U+679c, U+67d1, U+67e5, U+680b, U+6842, U+697c, U+6a58, U+6b3e, U+6b65, U+6bcf, U+6bd4, U+6c14, U+6c42, U+6cb9, U+6cd5, U+6ce1, U+6d41, U+6d53, U+6d77, U+6da6, U+6e05, U+6e29, U+6e7e, U+6fb3, U+7089, U+70b9, U+70d8, U+70e4, U+7119, U+7126, U+719f, U+71ac, U+71d5, U+724c, U+725b, U+7269, U+73af-73b0, U+7518, U+751c, U+7535, U+7559, U+767d, U+7684, U+76ae, U+76d0, U+770b, U+7a97, U+7ad9, U+7cd5-7cd6, U+7cfb, U+7ebf, U+7ec6, U+7ed9, U+7f29, U+7f8e, U+8001, U+8010, U+8036, U+8054, U+80fd, U+817b, U+81ea, U+81f3, U+822c, U+8282, U+829d, U+82b1, U+8309, U+8350, U+8389, U+83dc, U+83f2, U+8403, U+8425, U+843d, U+86cb, U+8702, U+871c, U+884c, U+8857, U+89d2, U+8ba2, U+8bdd, U+8bfb, U+8c37, U+8c46, U+8d28, U+8d77, U+8def, U+8f66, U+8f6c, U+8fdb, U+8ffd, U+901a, U+90a3, U+90ae, U+90e8, U+914d, U+9165, U+9175, U+9178, U+91cc, U+91cf, U+949f, U+94c1, U+957f, U+95e8, U+95f4, U+9605, U+9650, U+96ea, U+975e, U+9760, U+9762, U+9882, U+9884, U+98ce, U+9986, U+9999, U+9ad8, U+9ea6, U+9ec4, U+9ed1, U+ff08-ff09, U+ff0c, U+ff1b;
+}
+@font-face {
+  font-family: 'Cormorant Garamond';
+  font-style: normal;
+  font-weight: 500;
+  src: url(fonts/latin2.woff2) format('woff2');
+  unicode-range: U+21-23, U+25-49, U+4c-5a, U+61-7b, U+7d, U+a5, U+a9, U+b7, U+2013, U+3001-3002, U+4e00, U+4e0a-4e0b, U+4e0d-4e0e, U+4e1a, U+4e24, U+4e2d, U+4e5f, U+4e73, U+4e8c, U+4e8e, U+4e94, U+4ea4, U+4eae, U+4eba, U+4ee3, U+4eec, U+4efd, U+4f4d-4f4e, U+4f60, U+4f8b, U+505a, U+505c, U+5148, U+514b, U+5165, U+5168, U+516d, U+5173, U+517b, U+51b0, U+51b2, U+51b7, U+51c0, U+51fa, U+5206, U+521a, U+5229, U+5230, U+5236, U+523b, U+529b, U+52a0, U+52a8, U+5305, U+533a, U+5348, U+534a, U+5355-5357, U+5374, U+53cc, U+53d1, U+53d6, U+53e3, U+53ea, U+53ef-53f0, U+53f7, U+540e, U+5427, U+5468, U+5473, U+548c, U+5496, U+54b8, U+552e, U+5561, U+559d, U+56de, U+56fa, U+56fd, U+5706, U+5728, U+5730, U+573a, U+5740, U+5750, U+5757, U+575a, U+5883, U+58eb, U+5916, U+5929, U+594f, U+5976, U+597d, U+5b50, U+5b63, U+5b8c, U+5b9a, U+5ba2, U+5bb6, U+5bf9, U+5c0f, U+5c31, U+5c40, U+5c42, U+5c9b, U+5de7, U+5df1, U+5df4, U+5e0c, U+5e26, U+5e72, U+5e97, U+5ea7, U+5f00, U+5f0f, U+5fc3, U+5feb, U+610f, U+613f, U+6162, U+6211, U+624b, U+6279, U+628a, U+62db, U+62fc, U+62ff, U+6307, U+63a8, U+6446, U+64ae, U+6536, U+653e, U+65af, U+65e5, U+65e7, U+65e9, U+65f6, U+660e, U+662f, U+66f4, U+66ff, U+6709, U+671b, U+6728, U+673a, U+6765, U+676f, U+679c, U+67d1, U+67e5, U+680b, U+6842, U+697c, U+6a58, U+6b3e, U+6b65, U+6bcf, U+6bd4, U+6c14, U+6c42, U+6cb9, U+6cd5, U+6ce1, U+6d41, U+6d53, U+6d77, U+6da6, U+6e05, U+6e29, U+6e7e, U+6fb3, U+7089, U+70b9, U+70d8, U+70e4, U+7119, U+7126, U+719f, U+71ac, U+71d5, U+724c, U+725b, U+7269, U+73af-73b0, U+7518, U+751c, U+7535, U+7559, U+767d, U+7684, U+76ae, U+76d0, U+770b, U+7a97, U+7ad9, U+7cd5-7cd6, U+7cfb, U+7ebf, U+7ec6, U+7ed9, U+7f29, U+7f8e, U+8001, U+8010, U+8036, U+8054, U+80fd, U+817b, U+81ea, U+81f3, U+822c, U+8282, U+829d, U+82b1, U+8309, U+8350, U+8389, U+83dc, U+83f2, U+8403, U+8425, U+843d, U+86cb, U+8702, U+871c, U+884c, U+8857, U+89d2, U+8ba2, U+8bdd, U+8bfb, U+8c37, U+8c46, U+8d28, U+8d77, U+8def, U+8f66, U+8f6c, U+8fdb, U+8ffd, U+901a, U+90a3, U+90ae, U+90e8, U+914d, U+9165, U+9175, U+9178, U+91cc, U+91cf, U+949f, U+94c1, U+957f, U+95e8, U+95f4, U+9605, U+9650, U+96ea, U+975e, U+9760, U+9762, U+9882, U+9884, U+98ce, U+9986, U+9999, U+9ad8, U+9ea6, U+9ec4, U+9ed1, U+ff08-ff09, U+ff0c, U+ff1b;
+}
+:root{
+  --bg:#f6f0e7;
+  --bg-2:#efe5d6;
+  --ink:#2b1d14;
+  --ink-2:#6b5444;
+  --brown:#7a4b2a;
+  --brown-d:#4a2c18;
+  --cream:#fbf7f1;
+  --line:#e0d2bf;
+  --serif:"Noto Serif SC","Source Han Serif SC","Songti SC",serif;
+  --latin:"Cormorant Garamond",Georgia,serif;
+  --sans:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.8;-webkit-font-smoothing:antialiased}
+img{display:block;width:100%;height:100%;object-fit:cover}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1180px;margin:0 auto;padding:0 32px}
+
+.nav{position:fixed;inset:0 0 auto 0;z-index:10;transition:background .35s,box-shadow .35s,padding .35s;padding:22px 0}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between}
+.logo{display:flex;align-items:baseline;gap:12px;color:#fff;transition:color .35s}
+.logo b{font-family:var(--serif);font-size:22px;font-weight:700;letter-spacing:4px}
+.logo i{font-family:var(--latin);font-size:15px;letter-spacing:2px;opacity:.8}
+.nav ul{display:flex;gap:36px;list-style:none}
+.nav ul a{color:#fff;font-size:15px;letter-spacing:2px;position:relative;transition:color .35s}
+.nav ul a::after{content:"";position:absolute;left:0;right:0;bottom:-6px;height:1px;background:currentColor;transform:scaleX(0);transition:transform .3s}
+.nav ul a:hover::after{transform:scaleX(1)}
+.nav.solid{background:rgba(246,240,231,.94);backdrop-filter:blur(10px);box-shadow:0 1px 0 var(--line);padding:14px 0}
+.nav.solid .logo,.nav.solid ul a{color:var(--ink)}
+
+.hero{position:relative;height:100vh;min-height:620px;display:flex;align-items:center;color:#fff;overflow:hidden}
+.hero .bg{position:absolute;inset:0;transform:scale(1.08);animation:zoom 14s ease-out forwards}
+.hero .bg::after{content:"";position:absolute;inset:0;background:linear-gradient(100deg,rgba(30,18,10,.82) 0%,rgba(30,18,10,.45) 55%,rgba(30,18,10,.2) 100%)}
+@keyframes zoom{to{transform:scale(1)}}
+.hero .wrap{position:relative;width:100%}
+.hero .eyebrow{font-family:var(--latin);font-style:italic;font-size:20px;letter-spacing:3px;opacity:.85;margin-bottom:18px}
+.hero h1{font-family:var(--serif);font-size:clamp(44px,7vw,84px);font-weight:700;letter-spacing:10px;line-height:1.25}
+.hero p{font-family:var(--serif);font-size:19px;letter-spacing:4px;margin:22px 0 44px;opacity:.9}
+.btn{display:inline-flex;align-items:center;gap:12px;padding:14px 34px;border:1px solid rgba(255,255,255,.7);color:#fff;letter-spacing:4px;font-size:15px;transition:background .3s,color .3s}
+.btn:hover{background:#fff;color:var(--brown-d)}
+.btn svg{width:16px;height:16px;transition:transform .3s}
+.btn:hover svg{transform:translateX(4px)}
+.scroll-hint{position:absolute;bottom:34px;left:50%;transform:translateX(-50%);width:1px;height:56px;background:rgba(255,255,255,.35);overflow:hidden}
+.scroll-hint::after{content:"";position:absolute;left:0;top:-40%;width:100%;height:40%;background:#fff;animation:drip 2s infinite}
+@keyframes drip{to{top:100%}}
+
+section{padding:130px 0}
+.sec-head{text-align:center;margin-bottom:64px}
+.sec-head i{font-family:var(--latin);font-size:18px;letter-spacing:4px;color:var(--brown);display:block}
+.sec-head h2{font-family:var(--serif);font-size:38px;letter-spacing:8px;font-weight:600;margin-top:6px}
+.sec-head h2::after{content:"";display:block;width:36px;height:2px;background:var(--brown);margin:22px auto 0}
+
+.about .wrap{display:grid;grid-template-columns:1fr 1.1fr;gap:90px;align-items:center}
+.about .pic{position:relative;aspect-ratio:4/5}
+.about .pic::before{content:"";position:absolute;inset:28px -28px -28px 28px;border:1px solid var(--brown);opacity:.4}
+.about .pic img{position:relative}
+.about .since{position:absolute;right:-40px;bottom:40px;background:var(--brown-d);color:var(--cream);padding:22px 28px;font-family:var(--latin);text-align:center;line-height:1.2}
+.about .since b{font-size:42px;display:block}
+.about .since span{font-size:14px;letter-spacing:3px}
+.about .text i{font-family:var(--latin);font-size:18px;letter-spacing:4px;color:var(--brown)}
+.about .text h2{font-family:var(--serif);font-size:36px;letter-spacing:6px;line-height:1.5;margin:10px 0 28px;font-weight:600}
+.about .text p{color:var(--ink-2);font-size:16px;margin-bottom:18px;text-align:justify}
+.about .stats{display:flex;gap:56px;margin-top:40px;padding-top:32px;border-top:1px solid var(--line)}
+.about .stats b{font-family:var(--latin);font-size:40px;color:var(--brown);display:block;line-height:1}
+.about .stats span{font-size:14px;color:var(--ink-2);letter-spacing:2px}
+
+.menu{background:var(--bg-2)}
+.tabs{display:flex;justify-content:center;gap:12px;margin-bottom:52px}
+.tabs button{border:1px solid var(--line);background:transparent;color:var(--ink-2);padding:10px 30px;font:inherit;font-size:15px;letter-spacing:3px;cursor:pointer;transition:all .25s}
+.tabs button.on,.tabs button:hover{background:var(--brown-d);border-color:var(--brown-d);color:var(--cream)}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:28px}
+.card{background:var(--cream);transition:transform .35s,box-shadow .35s}
+.card:hover{transform:translateY(-6px);box-shadow:0 18px 40px rgba(74,44,24,.14)}
+.card .ph{aspect-ratio:1;overflow:hidden}
+.card .ph img{transition:transform .6s}
+.card:hover .ph img{transform:scale(1.06)}
+.card .tag{position:absolute;top:14px;left:14px;background:var(--brown);color:#fff;font-size:12px;padding:3px 10px;letter-spacing:2px}
+.card .ph{position:relative}
+.card .bd{padding:20px 22px 24px}
+.card .row{display:flex;justify-content:space-between;align-items:baseline}
+.card h3{font-family:var(--serif);font-size:19px;font-weight:600;letter-spacing:2px}
+.card .price{font-family:var(--latin);font-size:24px;color:var(--brown)}
+.card .price small{font-family:var(--sans);font-size:13px;margin-right:2px}
+.card .en{font-family:var(--latin);font-style:italic;color:var(--ink-2);font-size:15px}
+.card p{font-size:14px;color:var(--ink-2);margin-top:10px;line-height:1.7}
+.card.hide{display:none}
+
+.gallery .masonry{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:220px;gap:16px}
+.gallery .masonry div{overflow:hidden;position:relative}
+.gallery .masonry img{transition:transform .8s}
+.gallery .masonry div:hover img{transform:scale(1.05)}
+.gallery .masonry span{position:absolute;left:18px;bottom:14px;color:#fff;font-family:var(--serif);letter-spacing:3px;font-size:15px;text-shadow:0 1px 8px rgba(0,0,0,.5);opacity:0;transform:translateY(8px);transition:all .4s}
+.gallery .masonry div:hover span{opacity:1;transform:none}
+.m1{grid-column:span 2;grid-row:span 2}
+.m4,.m5{grid-row:span 2}
+.m6{grid-column:span 2}
+
+.visit{background:var(--brown-d);color:var(--cream)}
+.visit .sec-head i{color:#d6b48c}
+.visit .sec-head h2::after{background:#d6b48c}
+.visit .cols{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:stretch}
+.info{display:grid;gap:30px}
+.info .item{display:flex;gap:22px}
+.info svg{width:26px;height:26px;flex:none;color:#d6b48c;margin-top:4px}
+.info h4{font-family:var(--serif);font-size:18px;letter-spacing:3px;margin-bottom:6px}
+.info p{color:rgba(251,247,241,.72);font-size:15px}
+.hours{display:grid;grid-template-columns:auto 1fr;gap:4px 24px}
+.map{position:relative;background:#3a2213;min-height:340px;overflow:hidden;border:1px solid rgba(214,180,140,.25)}
+.map svg{position:absolute;inset:0;width:100%;height:100%}
+.pin{position:absolute;left:58%;top:44%;transform:translate(-50%,-100%);text-align:center}
+.pin .dot{width:18px;height:18px;border-radius:50%;background:#d6b48c;margin:0 auto;position:relative;box-shadow:0 0 0 6px rgba(214,180,140,.25)}
+.pin .dot::after{content:"";position:absolute;inset:-6px;border-radius:50%;border:2px solid #d6b48c;animation:ping 2s infinite}
+@keyframes ping{to{transform:scale(2.4);opacity:0}}
+.pin .label{background:var(--cream);color:var(--brown-d);font-family:var(--serif);font-size:14px;padding:6px 14px;letter-spacing:2px;margin-bottom:12px;white-space:nowrap;box-shadow:0 6px 18px rgba(0,0,0,.3)}
+
+footer{background:#22130a;color:rgba(251,247,241,.5);text-align:center;padding:40px 0;font-size:13px;letter-spacing:2px}
+footer b{font-family:var(--serif);color:var(--cream);font-size:18px;letter-spacing:6px;display:block;margin-bottom:8px}
+
+.reveal{opacity:0;transform:translateY(36px);transition:opacity .9s ease,transform .9s ease}
+.reveal.in{opacity:1;transform:none}
+
+@media (max-width:960px){
+  .grid{grid-template-columns:repeat(2,1fr)}
+  .about .wrap,.visit .cols{grid-template-columns:1fr;gap:60px}
+  .about .since{right:-10px}
+  .gallery .masonry{grid-template-columns:repeat(2,1fr);grid-auto-rows:180px}
+  .m6{grid-column:span 2}
+}
+@media (max-width:640px){
+  .wrap{padding:0 18px}
+  .nav ul{display:none}
+  section{padding:84px 0}
+  .grid{gap:14px}
+  .card .bd{padding:14px}
+  .card h3{font-size:16px}
+  .card p{display:none}
+  .about .stats{gap:28px}
+  .hero h1{letter-spacing:6px}
+}
+</style>
+</head>
+<body>
+
+<header class="nav" id="nav">
+  <div class="wrap">
+    <a class="logo" href="#top"><b>半岛咖啡</b><i>Peninsula Coffee</i></a>
+    <ul>
+      <li><a href="#about">关于我们</a></li>
+      <li><a href="#menu">招牌菜单</a></li>
+      <li><a href="#gallery">门店环境</a></li>
+      <li><a href="#visit">到店指南</a></li>
+    </ul>
+  </div>
+</header>
+
+<section class="hero" id="top">
+  <div class="bg"><img src="img/hero.jpg" alt=""></div>
+  <div class="wrap">
+    <div class="eyebrow reveal">Slow down, just right.</div>
+    <h1 class="reveal">慢一点，<br>刚刚好</h1>
+    <p class="reveal">一杯手冲的时间，留给自己</p>
+    <a class="btn reveal" href="#menu">查看菜单
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 12h15M13 6l6 6-6 6"/></svg>
+    </a>
+  </div>
+  <div class="scroll-hint"></div>
+</section>
+
+<section class="about" id="about">
+  <div class="wrap">
+    <div class="pic reveal">
+      <img src="img/about.jpg" alt="">
+      <div class="since"><b>2019</b><span>SINCE</span></div>
+    </div>
+    <div class="text reveal">
+      <i>Our Story</i>
+      <h2>老街转角的<br>一间小咖啡馆</h2>
+      <p>半岛咖啡开在海湾路的老街转角，是一栋两层的旧木楼。我们把一楼留给吧台和烘豆机，二楼留给愿意坐一下午的人。</p>
+      <p>豆子每周自家烘焙，只做小批量；甜点每天早上现烤，卖完就收。我们不追求快，只希望你推门进来的那一刻，能把节奏放慢一点。</p>
+      <div class="stats">
+        <div><b>12</b><span>款在售豆子</span></div>
+        <div><b>48h</b><span>烘焙后养豆</span></div>
+        <div><b>6:30</b><span>甜点出炉</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="menu" id="menu">
+  <div class="wrap">
+    <div class="sec-head reveal"><i>Signature Menu</i><h2>招牌菜单</h2></div>
+    <div class="tabs reveal" id="tabs">
+      <button class="on" data-f="all">全部</button>
+      <button data-f="coffee">咖啡</button>
+      <button data-f="dessert">甜点</button>
+    </div>
+    <div class="grid" id="grid">
+      <article class="card reveal" data-c="coffee">
+        <div class="ph"><img src="img/m-pourover.jpg" alt=""><span class="tag">店长推荐</span></div>
+        <div class="bd"><div class="row"><h3>手冲耶加雪菲</h3><span class="price"><small>¥</small>32</span></div><div class="en">Yirgacheffe Pour Over</div><p>柑橘与茉莉花香，明亮的酸质，冷却后有蜂蜜般的回甘。</p></div>
+      </article>
+      <article class="card reveal" data-c="coffee">
+        <div class="ph"><img src="img/m-oat.jpg" alt=""></div>
+        <div class="bd"><div class="row"><h3>燕麦拿铁</h3><span class="price"><small>¥</small>28</span></div><div class="en">Oat Latte</div><p>燕麦奶替代牛奶，谷物香更圆润，乳糖不耐也能放心喝。</p></div>
+      </article>
+      <article class="card reveal" data-c="coffee">
+        <div class="ph"><img src="img/m-caramel.jpg" alt=""><span class="tag">人气</span></div>
+        <div class="bd"><div class="row"><h3>海盐焦糖拿铁</h3><span class="price"><small>¥</small>30</span></div><div class="en">Sea Salt Caramel Latte</div><p>自熬焦糖加一小撮海盐，甜里带咸，是老客的固定点单。</p></div>
+      </article>
+      <article class="card reveal" data-c="coffee">
+        <div class="ph"><img src="img/m-coldbrew.jpg" alt=""><span class="tag">季节限定</span></div>
+        <div class="bd"><div class="row"><h3>桂花冷萃</h3><span class="price"><small>¥</small>30</span></div><div class="en">Osmanthus Cold Brew</div><p>低温萃取 16 小时，加入自制桂花蜜，清甜不腻。</p></div>
+      </article>
+      <article class="card reveal" data-c="coffee">
+        <div class="ph"><img src="img/m-americano.jpg" alt=""></div>
+        <div class="bd"><div class="row"><h3>冰美式</h3><span class="price"><small>¥</small>22</span></div><div class="en">Iced Americano</div><p>拼配豆双份浓缩，坚果与黑巧克力风味，干净利落。</p></div>
+      </article>
+      <article class="card reveal" data-c="coffee">
+        <div class="ph"><img src="img/m-flatwhite.jpg" alt=""></div>
+        <div class="bd"><div class="row"><h3>澳白</h3><span class="price"><small>¥</small>28</span></div><div class="en">Flat White</div><p>更高的咖啡比例与细腻奶泡，入口先是咖啡，后是奶香。</p></div>
+      </article>
+      <article class="card reveal" data-c="dessert">
+        <div class="ph"><img src="img/m-basque.jpg" alt=""><span class="tag">每日限量</span></div>
+        <div class="bd"><div class="row"><h3>巴斯克芝士蛋糕</h3><span class="price"><small>¥</small>26</span></div><div class="en">Basque Cheesecake</div><p>高温烤出焦香外皮，中心半熟流心，每天只做 20 块。</p></div>
+      </article>
+      <article class="card reveal" data-c="dessert">
+        <div class="ph"><img src="img/m-croissant.jpg" alt=""></div>
+        <div class="bd"><div class="row"><h3>黄油可颂</h3><span class="price"><small>¥</small>18</span></div><div class="en">Butter Croissant</div><p>法国发酵黄油，27 层起酥，早上配一杯美式刚好。</p></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="gallery" id="gallery">
+  <div class="wrap">
+    <div class="sec-head reveal"><i>Our Space</i><h2>门店环境</h2></div>
+    <div class="masonry">
+      <div class="m1 reveal"><img src="img/g1.jpg" alt=""><span>一楼 · 吧台区</span></div>
+      <div class="m2 reveal"><img src="img/g2.jpg" alt=""><span>靠窗座位</span></div>
+      <div class="m3 reveal"><img src="img/g5.jpg" alt=""><span>手冲台</span></div>
+      <div class="m4 reveal"><img src="img/g3.jpg" alt=""><span>门口外摆</span></div>
+      <div class="m5 reveal"><img src="img/g4.jpg" alt=""><span>二楼 · 阅读区</span></div>
+      <div class="m6 reveal"><img src="img/g6.jpg" alt=""><span>每周自家烘焙</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="visit" id="visit">
+  <div class="wrap">
+    <div class="sec-head reveal"><i>Visit Us</i><h2>到店指南</h2></div>
+    <div class="cols">
+      <div class="info reveal">
+        <div class="item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>
+          <div><h4>门店地址</h4><p>海湾路 27 号（老街转角，邮局对面）</p></div>
+        </div>
+        <div class="item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+          <div><h4>营业时间</h4><p class="hours"><span>周一至周五</span><span>08:00 – 20:00</span><span>周六、周日</span><span>09:00 – 22:00</span></p></div>
+        </div>
+        <div class="item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg>
+          <div><h4>联系电话</h4><p>138-0000-0000（可预订二楼包场）</p></div>
+        </div>
+        <div class="item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="6" width="18" height="12" rx="2"/><path d="M7 18v2M17 18v2M3 12h18"/></svg>
+          <div><h4>交通</h4><p>地铁 2 号线海湾路站 B 口步行 5 分钟，门口有非机动车停放区</p></div>
+        </div>
+      </div>
+      <div class="map reveal">
+        <svg viewBox="0 0 600 400" preserveAspectRatio="xMidYMid slice">
+          <rect width="600" height="400" fill="#3a2213"/>
+          <path d="M0 300 Q150 270 260 320 T600 290 V400 H0Z" fill="#2c4a52" opacity=".55"/>
+          <g stroke="#5a3a24" stroke-width="18" fill="none" stroke-linecap="round">
+            <path d="M-20 170 H620"/><path d="M350 -20 V420"/><path d="M120 -20 L200 420"/>
+          </g>
+          <g stroke="#4a2e1b" stroke-width="8" fill="none">
+            <path d="M-20 80 H620"/><path d="M500 -20 V300"/><path d="M220 170 L260 0"/><path d="M350 240 H620"/>
+          </g>
+          <g fill="#462a18">
+            <rect x="380" y="100" width="100" height="50" rx="4"/><rect x="230" y="190" width="100" height="70" rx="4"/>
+            <rect x="380" y="190" width="100" height="36" rx="4"/><rect x="20" y="100" width="80" height="50" rx="4"/>
+            <rect x="520" y="100" width="70" height="50" rx="4"/><rect x="20" y="190" width="90" height="60" rx="4"/>
+          </g>
+          <text x="40" y="162" fill="#a98463" font-size="13" letter-spacing="3">海湾路</text>
+          <text x="362" y="30" fill="#a98463" font-size="13" letter-spacing="3">老街</text>
+          <text x="60" y="360" fill="#7fa3aa" font-size="13" letter-spacing="3">海湾</text>
+        </svg>
+        <div class="pin"><div class="label">半岛咖啡</div><div class="dot"></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <b>半岛咖啡</b>
+  © 2026 Peninsula Coffee · 慢一点，刚刚好
+</footer>
+
+<script>
+const nav=document.getElementById('nav');
+const onScroll=()=>nav.classList.toggle('solid',scrollY>60);
+addEventListener('scroll',onScroll,{passive:true});onScroll();
+
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12});
+document.querySelectorAll('.reveal').forEach((el,i)=>{el.style.transitionDelay=(el.closest('.grid,.masonry')?(i%4)*.08:0)+'s';io.observe(el)});
+
+document.getElementById('tabs').addEventListener('click',e=>{
+  const b=e.target.closest('button');if(!b)return;
+  document.querySelectorAll('#tabs button').forEach(x=>x.classList.toggle('on',x===b));
+  const f=b.dataset.f;
+  document.querySelectorAll('#grid .card').forEach(c=>c.classList.toggle('hide',f!=='all'&&c.dataset.c!==f));
+});
+</script>
+</body>
+</html>

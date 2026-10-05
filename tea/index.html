@@ -1,0 +1,543 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>茶屿 · 点单小程序</title>
+<style>
+:root{
+  --pri:#12b892;
+  --pri-d:#0a9475;
+  --pri-l:#e3f7f1;
+  --acc:#ffb020;
+  --red:#ff5a4e;
+  --ink:#1d2328;
+  --ink-2:#5f6b74;
+  --ink-3:#9aa4ab;
+  --bg:#f5f7f8;
+  --card:#fff;
+  --line:#edf0f2;
+  --sans:-apple-system,"PingFang SC","Microsoft YaHei","Helvetica Neue",sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+body{font-family:var(--sans);color:var(--ink);background:radial-gradient(circle at 15% 20%,#d9f6ec 0,transparent 45%),radial-gradient(circle at 85% 80%,#fff0d1 0,transparent 45%),#eef3f2;min-height:100vh;display:flex;align-items:center;justify-content:center;gap:90px;padding:40px}
+button{font:inherit;border:0;background:none;color:inherit;cursor:pointer}
+svg{display:block}
+
+.intro{max-width:340px}
+.intro .brand{display:flex;align-items:center;gap:14px;margin-bottom:26px}
+.intro .brand .lg{width:56px;height:56px;border-radius:16px;background:var(--pri);display:grid;place-items:center;box-shadow:0 10px 24px rgba(18,184,146,.35)}
+.intro .brand b{font-size:30px;letter-spacing:4px}
+.intro h1{font-size:22px;font-weight:600;line-height:1.6;margin-bottom:14px}
+.intro p{color:var(--ink-2);font-size:15px;line-height:1.9}
+.intro ul{list-style:none;margin-top:24px;display:grid;gap:10px}
+.intro li{display:flex;align-items:center;gap:10px;font-size:14px;color:var(--ink-2)}
+.intro li::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--pri)}
+
+.phone{width:390px;height:844px;border-radius:54px;background:#111;padding:12px;box-shadow:0 40px 80px rgba(20,60,50,.25),inset 0 0 0 2px #333;flex:none;position:relative}
+.screen{width:100%;height:100%;border-radius:42px;overflow:hidden;background:var(--bg);position:relative;display:flex;flex-direction:column}
+.island{position:absolute;top:10px;left:50%;transform:translateX(-50%);width:110px;height:32px;border-radius:20px;background:#000;z-index:50}
+
+.status{height:48px;flex:none;display:flex;align-items:flex-end;justify-content:space-between;padding:0 30px 6px 34px;font-size:15px;font-weight:600;background:#fff;position:relative;z-index:5}
+.status .ic{display:flex;gap:6px;align-items:center}
+.wxbar{height:44px;flex:none;display:flex;align-items:center;justify-content:center;position:relative;background:#fff;font-size:17px;font-weight:600;z-index:5}
+.wxbar .back{position:absolute;left:10px;width:34px;height:34px;display:none;place-items:center}
+.wxbar.sub .back{display:grid}
+.capsule{position:absolute;right:10px;width:87px;height:32px;border-radius:16px;border:1px solid #e5e5e5;display:flex;align-items:center;background:rgba(255,255,255,.8)}
+.capsule span{flex:1;display:grid;place-items:center}
+.capsule i{width:1px;height:18px;background:#e5e5e5}
+
+.pages{flex:1;position:relative;overflow:hidden}
+.page{position:absolute;inset:0;display:flex;flex-direction:column;background:var(--bg);transition:transform .35s cubic-bezier(.3,.7,.3,1)}
+.page.off{transform:translateX(100%)}
+#pMenu{z-index:1}#pCheck{z-index:2}#pOk{z-index:3}
+
+.banner{height:150px;position:relative;overflow:hidden;flex:none}
+.slides{display:flex;height:100%;transition:transform .6s ease}
+.slide{flex:none;width:100%;height:100%;position:relative}
+.slide img{width:100%;height:100%;object-fit:cover}
+.slide::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,0,0,.45),transparent 70%)}
+.slide .cap{position:absolute;left:20px;top:28px;color:#fff;z-index:1}
+.slide .cap b{font-size:22px;display:block;letter-spacing:1px}
+.slide .cap span{font-size:13px;opacity:.9}
+.slide .cap em{display:inline-block;margin-top:10px;font-style:normal;font-size:12px;background:var(--acc);color:#4a2e00;padding:3px 10px;border-radius:10px;font-weight:600}
+.dots{position:absolute;bottom:30px;left:20px;display:flex;gap:5px;z-index:2}
+.dots i{width:6px;height:6px;border-radius:3px;background:rgba(255,255,255,.5);transition:all .3s}
+.dots i.on{width:16px;background:#fff}
+
+.shop{margin:-22px 12px 0;background:#fff;border-radius:16px;padding:14px 16px;position:relative;z-index:2;display:flex;align-items:center;justify-content:space-between;box-shadow:0 4px 16px rgba(0,0,0,.05);flex:none}
+.shop b{font-size:16px;display:flex;align-items:center;gap:4px}
+.shop small{font-size:12px;color:var(--ink-3);display:block;margin-top:3px}
+.seg{display:flex;background:var(--bg);border-radius:16px;padding:3px}
+.seg button{padding:5px 13px;border-radius:13px;font-size:13px;color:var(--ink-2);transition:all .25s}
+.seg button.on{background:var(--pri);color:#fff;font-weight:600}
+
+.order{flex:1;display:flex;min-height:0;margin-top:12px;background:#fff;border-radius:18px 18px 0 0}
+.side{width:84px;flex:none;background:var(--bg);overflow-y:auto;border-top-left-radius:18px;padding-bottom:90px}
+.side button{display:block;width:100%;padding:18px 0;font-size:14px;color:var(--ink-2);position:relative;transition:all .2s}
+.side button.on{background:#fff;color:var(--ink);font-weight:600}
+.side button.on::before{content:"";position:absolute;left:0;top:50%;transform:translateY(-50%);width:4px;height:18px;border-radius:0 3px 3px 0;background:var(--pri)}
+.side button .n{position:absolute;top:10px;right:10px;min-width:16px;height:16px;border-radius:8px;background:var(--red);color:#fff;font-size:10px;line-height:16px;padding:0 4px;font-weight:600}
+.list{flex:1;overflow-y:auto;padding:4px 14px 100px;scroll-behavior:smooth}
+.list::-webkit-scrollbar,.side::-webkit-scrollbar{display:none}
+.list h4{font-size:13px;color:var(--ink-3);font-weight:500;padding:14px 0 6px;position:sticky;top:-4px;background:#fff;z-index:1}
+.item{display:flex;gap:12px;padding:10px 0}
+.thumb{width:84px;height:84px;border-radius:14px;flex:none;display:grid;place-items:center;overflow:hidden}
+.thumb svg{width:70px;height:84px;margin-top:10px}
+.item .info{flex:1;min-width:0;display:flex;flex-direction:column}
+.item .nm{font-size:15px;font-weight:600}
+.item .ds{font-size:12px;color:var(--ink-3);margin-top:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.item .tags{display:flex;gap:4px;margin-top:5px}
+.item .tags span{font-size:10px;padding:1px 6px;border-radius:4px;background:#fff3dc;color:#c27a00}
+.item .tags span.hot{background:#ffe8e6;color:var(--red)}
+.item .bt{margin-top:auto;display:flex;align-items:center;justify-content:space-between}
+.price{color:var(--ink);font-weight:700;font-size:17px}
+.price small{font-size:11px;margin-right:1px}
+.price em{font-style:normal;font-size:11px;color:var(--ink-3);font-weight:400;margin-left:2px}
+.pick{background:var(--pri);color:#fff;font-size:12px;padding:5px 11px;border-radius:13px;font-weight:600;position:relative}
+.pick .n{position:absolute;top:-7px;right:-6px;min-width:16px;height:16px;border-radius:8px;background:var(--red);color:#fff;font-size:10px;line-height:16px;padding:0 4px;border:1.5px solid #fff;box-sizing:content-box}
+
+.cartbar{position:absolute;left:14px;right:14px;bottom:24px;height:56px;border-radius:28px;background:#22282d;display:flex;align-items:center;padding-left:78px;z-index:10;box-shadow:0 10px 24px rgba(0,0,0,.2)}
+.cartbar .bag{position:absolute;left:14px;bottom:10px;width:54px;height:54px;border-radius:50%;background:#3a4147;display:grid;place-items:center;border:4px solid #22282d;transition:background .3s}
+.cartbar.has .bag{background:var(--pri)}
+.cartbar .bag .n{position:absolute;top:-4px;right:-4px;min-width:20px;height:20px;border-radius:10px;background:var(--red);color:#fff;font-size:12px;line-height:20px;text-align:center;padding:0 5px;font-weight:600;display:none}
+.cartbar.has .bag .n{display:block}
+.cartbar .sum{flex:1;color:#fff}
+.cartbar .sum b{font-size:19px}
+.cartbar .sum small{display:block;font-size:11px;color:#8c959c}
+.cartbar .go{height:100%;padding:0 26px;border-radius:0 28px 28px 0;background:#3a4147;color:#8c959c;font-weight:600;font-size:15px}
+.cartbar.has .go{background:var(--pri);color:#fff}
+.bump{animation:bump .4s}
+@keyframes bump{40%{transform:scale(1.18)}}
+
+.tabbar{height:78px;flex:none;background:#fff;border-top:1px solid var(--line);display:flex;padding-bottom:20px}
+.tabbar button{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;font-size:11px;color:var(--ink-3)}
+.tabbar button.on{color:var(--pri)}
+
+.mask{position:absolute;inset:0;background:rgba(0,0,0,.45);z-index:30;opacity:0;pointer-events:none;transition:opacity .3s}
+.mask.show{opacity:1;pointer-events:auto}
+.sheet{position:absolute;left:0;right:0;bottom:0;background:#fff;border-radius:22px 22px 0 0;z-index:31;transform:translateY(105%);transition:transform .35s cubic-bezier(.3,.7,.3,1);max-height:86%;display:flex;flex-direction:column}
+.sheet.show{transform:none}
+.sheet .x{position:absolute;right:14px;top:14px;width:30px;height:30px;border-radius:50%;background:var(--bg);display:grid;place-items:center;z-index:2}
+
+.spec-hd{display:flex;gap:14px;padding:20px 20px 14px}
+.spec-hd .thumb{width:96px;height:96px}
+.spec-hd .thumb svg{width:80px;height:96px}
+.spec-hd b{font-size:18px;display:block;margin-top:6px}
+.spec-hd p{font-size:12px;color:var(--ink-3);margin-top:6px;line-height:1.6;padding-right:24px}
+.spec-bd{overflow-y:auto;padding:0 20px 10px;flex:1}
+.grp{margin-top:16px}
+.grp h5{font-size:14px;margin-bottom:10px;display:flex;align-items:baseline;gap:6px}
+.grp h5 small{font-weight:400;color:var(--ink-3);font-size:11px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{padding:7px 14px;border-radius:8px;background:var(--bg);font-size:13px;border:1px solid transparent;transition:all .2s}
+.chip small{color:var(--ink-3);margin-left:3px;font-size:11px}
+.chip.on{background:var(--pri-l);border-color:var(--pri);color:var(--pri-d);font-weight:600}
+.chip.on small{color:var(--pri-d)}
+.spec-ft{border-top:1px solid var(--line);padding:12px 20px 30px;display:flex;align-items:center;gap:12px}
+.spec-ft .l{flex:1;min-width:0}
+.spec-ft .sel{font-size:11px;color:var(--ink-3);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-top:2px}
+.step{display:flex;align-items:center;gap:10px}
+.step button{width:24px;height:24px;border-radius:50%;display:grid;place-items:center;border:1.5px solid var(--pri);color:var(--pri)}
+.step button.add{background:var(--pri);color:#fff}
+.step span{min-width:14px;text-align:center;font-weight:600;font-size:14px}
+.btn{background:var(--pri);color:#fff;font-weight:600;font-size:15px;border-radius:22px;padding:11px 22px;white-space:nowrap}
+.btn:active{background:var(--pri-d)}
+
+.cart-hd{display:flex;align-items:center;justify-content:space-between;padding:16px 20px;border-bottom:1px solid var(--line)}
+.cart-hd b{font-size:16px}
+.cart-hd button{font-size:13px;color:var(--ink-3);display:flex;gap:4px;align-items:center}
+.cart-bd{overflow-y:auto;padding:4px 20px 96px}
+.crow{display:flex;gap:12px;align-items:center;padding:12px 0;border-bottom:1px solid var(--line)}
+.crow .thumb{width:56px;height:56px;border-radius:10px}
+.crow .thumb svg{width:46px;height:56px;margin-top:6px}
+.crow .mid{flex:1;min-width:0}
+.crow .mid b{font-size:14px}
+.crow .mid>small{display:block;font-size:11px;color:var(--ink-3);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin:2px 0 4px}
+
+.ck{flex:1;overflow-y:auto;padding:12px 12px 110px}
+.box{background:#fff;border-radius:16px;padding:16px;margin-bottom:12px}
+.box h6{font-size:14px;margin-bottom:12px;display:flex;justify-content:space-between;align-items:center}
+.box h6 span{font-weight:400;font-size:12px;color:var(--ink-3)}
+.addr b{font-size:16px;display:block}
+.addr small{font-size:12px;color:var(--ink-3);display:block;margin-top:4px}
+.when{display:flex;gap:8px;margin-top:14px}
+.when .chip{flex:1;text-align:center}
+.line{display:flex;justify-content:space-between;align-items:center;font-size:13px;padding:7px 0;color:var(--ink-2)}
+.line .neg{color:var(--red)}
+.line .cp{display:flex;align-items:center;gap:6px}
+.line .cp i{font-style:normal;font-size:10px;background:var(--red);color:#fff;padding:1px 5px;border-radius:3px}
+.total{display:flex;justify-content:flex-end;align-items:baseline;gap:6px;border-top:1px dashed var(--line);margin-top:8px;padding-top:12px;font-size:13px}
+.total b{font-size:20px}
+.ck .crow:last-of-type{border-bottom:0}
+.note{display:flex;flex-wrap:wrap;gap:8px}
+.paybar{position:absolute;left:0;right:0;bottom:0;background:#fff;padding:12px 16px 30px;display:flex;align-items:center;justify-content:space-between;box-shadow:0 -4px 16px rgba(0,0,0,.05)}
+.paybar .s{font-size:13px;color:var(--ink-2)}
+.paybar .s b{font-size:22px;color:var(--ink)}
+.paybar .s small{color:var(--red);margin-left:6px;font-size:12px}
+
+.ok{flex:1;overflow-y:auto;padding:20px 16px 40px;text-align:center}
+.ok .big{width:76px;height:76px;border-radius:50%;background:var(--pri);margin:20px auto 16px;display:grid;place-items:center;box-shadow:0 0 0 10px var(--pri-l);animation:pop .5s cubic-bezier(.3,1.6,.5,1)}
+@keyframes pop{from{transform:scale(.3);opacity:0}}
+.ok h2{font-size:22px}
+.ok .sub{font-size:13px;color:var(--ink-3);margin-top:6px}
+.ticket{background:#fff;border-radius:18px;margin-top:24px;padding:22px 20px;position:relative}
+.ticket::before,.ticket::after{content:"";position:absolute;top:104px;width:20px;height:20px;border-radius:50%;background:var(--bg)}
+.ticket::before{left:-10px}.ticket::after{right:-10px}
+.ticket small{font-size:12px;color:var(--ink-3)}
+.ticket .no{font-size:52px;font-weight:800;letter-spacing:4px;color:var(--pri);line-height:1.2}
+.ticket .dash{border-top:1px dashed var(--line);margin:22px 0 18px}
+.prog{display:flex;justify-content:space-between;position:relative;padding:0 10px}
+.prog::before{content:"";position:absolute;top:11px;left:40px;right:40px;height:2px;background:var(--line)}
+.prog::after{content:"";position:absolute;top:11px;left:40px;width:calc((100% - 80px)/2);height:2px;background:var(--pri)}
+.prog div{position:relative;z-index:1;font-size:12px;color:var(--ink-3);display:flex;flex-direction:column;align-items:center;gap:6px;width:60px}
+.prog div i{width:24px;height:24px;border-radius:50%;background:#fff;border:2px solid var(--line)}
+.prog div.on{color:var(--ink);font-weight:600}
+.prog div.on i{background:var(--pri);border-color:var(--pri);box-shadow:0 0 0 4px var(--pri-l)}
+.prog div.cur i{animation:pulse 1.5s infinite}
+@keyframes pulse{50%{box-shadow:0 0 0 8px var(--pri-l)}}
+.ok .eta{margin-top:18px;font-size:13px;color:var(--ink-2)}
+.ok .eta b{color:var(--acc)}
+.ok .again{margin-top:28px;width:100%;padding:13px}
+
+.toast{position:absolute;left:50%;top:46%;transform:translate(-50%,-50%) scale(.9);background:rgba(20,24,28,.86);color:#fff;font-size:14px;padding:12px 20px;border-radius:12px;z-index:60;opacity:0;pointer-events:none;transition:all .25s;white-space:nowrap}
+.toast.show{opacity:1;transform:translate(-50%,-50%) scale(1)}
+.fly{position:absolute;width:18px;height:18px;border-radius:50%;background:var(--pri);z-index:40;pointer-events:none;transition:left .55s cubic-bezier(.4,0,1,1),top .55s cubic-bezier(.2,-.6,.7,.2),opacity .55s}
+
+@media (max-width:860px){.intro{display:none}}
+@media (max-width:500px){
+  body{padding:0;display:block;background:var(--bg)}
+  .phone{width:100%;height:100dvh;border-radius:0;padding:0;box-shadow:none;background:none}
+  .screen{border-radius:0}
+  .island{display:none}
+  .status{display:none}
+}
+</style>
+</head>
+<body>
+
+<aside class="intro">
+  <div class="brand">
+    <div class="lg"><svg width="30" height="30" viewBox="0 0 30 30" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 10h14l-2 15H10z"/><path d="M7 10h16M15 10l3-7"/></svg></div>
+    <b>茶屿</b>
+  </div>
+  <h1>奶茶店点单小程序</h1>
+  <p>从选品、规格、购物车到下单取餐的完整点单流程，界面完全按微信小程序规范设计，可直接对接门店收银与支付。</p>
+  <ul>
+    <li>分类联动滚动，菜单再长也好找</li>
+    <li>杯型、甜度、温度、加料自由组合，实时算价</li>
+    <li>自取 / 外送切换，满减优惠自动计算</li>
+    <li>下单后生成取餐号，制作进度一目了然</li>
+  </ul>
+</aside>
+
+<div class="phone">
+  <div class="screen" id="screen">
+    <div class="island"></div>
+    <div class="status">
+      <span>9:41</span>
+      <span class="ic">
+        <svg width="18" height="12" viewBox="0 0 18 12" fill="currentColor"><rect x="0" y="8" width="3" height="4" rx="1"/><rect x="5" y="5.5" width="3" height="6.5" rx="1"/><rect x="10" y="3" width="3" height="9" rx="1"/><rect x="15" y="0" width="3" height="12" rx="1"/></svg>
+        <svg width="16" height="12" viewBox="0 0 16 12" fill="currentColor"><path d="M8 2.5c2.3 0 4.4.9 6 2.4l1.2-1.3A10.4 10.4 0 0 0 8 .7 10.4 10.4 0 0 0 .8 3.6L2 4.9a8.6 8.6 0 0 1 6-2.4zm0 3.6c1.4 0 2.6.5 3.5 1.4l1.3-1.3A6.8 6.8 0 0 0 8 4.3a6.8 6.8 0 0 0-4.8 1.9l1.3 1.3C5.4 6.6 6.6 6.1 8 6.1zm0 3.6-1.9 2 1.9 2 1.9-2z"/></svg>
+        <svg width="27" height="13" viewBox="0 0 27 13" fill="none"><rect x=".5" y=".5" width="23" height="12" rx="3.5" stroke="currentColor" opacity=".4"/><rect x="2" y="2" width="19" height="9" rx="2" fill="currentColor"/><path d="M25 4.5v4c.8-.3 1.3-1.1 1.3-2s-.5-1.7-1.3-2z" fill="currentColor" opacity=".4"/></svg>
+      </span>
+    </div>
+    <div class="wxbar" id="wxbar">
+      <button class="back" id="back"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg></button>
+      <span id="title">茶屿点单</span>
+      <div class="capsule">
+        <span><svg width="20" height="6" viewBox="0 0 20 6" fill="currentColor"><circle cx="3" cy="3" r="2.2"/><circle cx="10" cy="3" r="3"/><circle cx="17" cy="3" r="2.2"/></svg></span><i></i>
+        <span><svg width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="10" cy="10" r="8"/><circle cx="10" cy="10" r="3" fill="currentColor"/></svg></span>
+      </div>
+    </div>
+
+    <div class="pages">
+      <section class="page" id="pMenu">
+        <div class="banner">
+          <div class="slides" id="slides">
+            <div class="slide"><img src="img/banner1.jpg" alt=""><div class="cap"><b>夏日双杯季</b><span>任意两杯第二杯半价</span><br><em>立即抢</em></div></div>
+            <div class="slide"><img src="img/banner2.jpg" alt=""><div class="cap"><b>芝芝莓莓 回归</b><span>当季草莓 · 现打芝士奶盖</span><br><em>限时供应</em></div></div>
+            <div class="slide"><img src="img/banner3.jpg" alt=""><div class="cap"><b>杨枝甘露 升级</b><span>新鲜芒果加量 30%</span><br><em>去尝尝</em></div></div>
+          </div>
+          <div class="dots" id="dots"><i class="on"></i><i></i><i></i></div>
+        </div>
+        <div class="shop">
+          <div>
+            <b>茶屿 · 海湾路店<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M9 6l6 6-6 6"/></svg></b>
+            <small>距离你 320m · 营业中 10:00-22:00</small>
+          </div>
+          <div class="seg" id="mode"><button class="on" data-m="self">自取</button><button data-m="ship">外送</button></div>
+        </div>
+        <div class="order">
+          <nav class="side" id="side"></nav>
+          <div class="list" id="list"></div>
+        </div>
+        <div class="cartbar" id="cartbar">
+          <button class="bag" id="bag"><svg width="26" height="26" viewBox="0 0 30 30" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 10h14l-2 15H10z"/><path d="M7 10h16M15 10l3-7"/></svg><span class="n" id="bagN">0</span></button>
+          <div class="sum" id="sum"></div>
+          <button class="go" id="go">去结算</button>
+        </div>
+      </section>
+
+      <section class="page off" id="pCheck">
+        <div class="ck" id="ck"></div>
+        <div class="paybar"><div class="s" id="payS"></div><button class="btn" id="submit">提交订单</button></div>
+      </section>
+
+      <section class="page off" id="pOk">
+        <div class="ok" id="ok"></div>
+      </section>
+    </div>
+
+    <div class="tabbar" id="tabbar">
+      <button data-t="home"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M4 10l8-6 8 6v9a1 1 0 0 1-1 1h-4v-6H9v6H5a1 1 0 0 1-1-1z"/></svg>首页</button>
+      <button class="on" data-t="menu"><svg width="24" height="24" viewBox="0 0 30 30" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 10h14l-2 15H10z"/><path d="M7 10h16M15 10l3-7"/></svg>点单</button>
+      <button data-t="orders"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M9 8h6M9 12h6M9 16h3"/></svg>订单</button>
+      <button data-t="me"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="4"/><path d="M4 21c1-4 4.5-6 8-6s7 2 8 6"/></svg>我的</button>
+    </div>
+
+    <div class="mask" id="mask"></div>
+    <div class="sheet" id="specSheet"></div>
+    <div class="sheet" id="cartSheet"></div>
+    <div class="toast" id="toast"></div>
+  </div>
+</div>
+
+<script>
+const CATS=[
+  {id:'sig',name:'招牌'},
+  {id:'fruit',name:'果茶'},
+  {id:'milk',name:'奶茶'},
+  {id:'tea',name:'纯茶'}
+];
+const ITEMS=[
+  {id:1,cat:'sig',name:'芋泥波波奶茶',desc:'手捣荔浦芋泥，配黑糖波波和厚乳茶底',price:18,tags:['人气No.1'],hot:1,cup:{bg:'#f1eafb',liq:['#e8d8c6','#d9c3ad'],bottom:'#b89bd8',bh:.32,pearl:1}},
+  {id:2,cat:'sig',name:'杨枝甘露',desc:'整颗芒果现切，红西柚粒与西米打底',price:19,tags:['招牌'],cup:{bg:'#fff4d6',liq:['#ffe27a','#ffc23d'],sago:1,dots:'#ff8a7a'}},
+  {id:3,cat:'sig',name:'屿岛满杯红柚',desc:'整杯红西柚果肉，茉莉绿茶底清爽回甘',price:17,tags:['新品'],cup:{bg:'#ffe9e5',liq:['#ffb3a2','#ff7a68'],flesh:'#ff6b57'}},
+  {id:4,cat:'fruit',name:'多肉葡萄',desc:'手剥巨峰葡萄，搭配芝士奶盖',price:19,tags:['人气'],hot:1,cup:{bg:'#f2e8fb',liq:['#c8a6ea','#8d5bbd'],cream:1,berry:'#6c3a99'}},
+  {id:5,cat:'fruit',name:'满杯百香果',desc:'双倍百香果，酸甜清爽，夏天必点',price:14,tags:[],cup:{bg:'#fff1db',liq:['#ffd06a','#ffad2e'],seed:1}},
+  {id:6,cat:'fruit',name:'手打柠檬茶',desc:'香水柠檬现场暴打，鸭屎香单丛茶底',price:13,tags:['爆款'],hot:1,cup:{bg:'#fdf6dc',liq:['#f6cf72','#e3a338'],lemon:1}},
+  {id:7,cat:'fruit',name:'芝芝莓莓',desc:'当季草莓与现打芝士，莓果控必选',price:21,tags:['限定'],cup:{bg:'#ffe8ef',liq:['#ffb8cb','#ff7c9c'],cream:1,berry:'#e8385e'}},
+  {id:8,cat:'milk',name:'珍珠奶茶',desc:'经典锡兰红茶底，现煮Q弹黑珍珠',price:13,tags:[],cup:{bg:'#f6ece2',liq:['#dcb895','#c48f63'],pearl:1}},
+  {id:9,cat:'milk',name:'黑糖波波鲜奶',desc:'冲绳黑糖挂壁，搭配纯牛乳',price:16,tags:['人气'],cup:{bg:'#f6ece2',liq:['#fbf6ef','#f1e6d8'],stripe:1,pearl:1}},
+  {id:10,cat:'milk',name:'抹茶拿铁',desc:'宇治抹茶现刷，分层倒入鲜奶',price:17,tags:[],cup:{bg:'#eaf5e3',liq:['#a9d38b','#7cb560'],bottom:'#f6f3ea',bh:.45,flip:1}},
+  {id:11,cat:'tea',name:'茉莉绿茶',desc:'七窨茉莉花茶，花香清雅',price:10,tags:[],cup:{bg:'#f0f7df',liq:['#e8f0b0','#cfe08a'],clear:1}},
+  {id:12,cat:'tea',name:'冻顶乌龙',desc:'中焙乌龙，焙火香与回甘',price:11,tags:[],cup:{bg:'#f8eedd',liq:['#e0a75c','#b9772e'],clear:1}}
+];
+const SPEC=[
+  {key:'size',name:'杯型',opts:[['中杯',0],['大杯',3]]},
+  {key:'sugar',name:'甜度',opts:[['标准糖',0],['七分糖',0],['五分糖',0],['三分糖',0],['不另加糖',0]]},
+  {key:'ice',name:'温度',opts:[['正常冰',0],['少冰',0],['去冰',0],['温热',0]]},
+  {key:'add',name:'加料',multi:1,tip:'可多选',opts:[['黑珍珠',2],['椰果',2],['芋圆',3],['布丁',3],['芝士奶盖',4]]}
+];
+
+let uid=0;
+function cupSVG(c){
+  const u='c'+(++uid);
+  const tl=14,tr=86,bl=24,br=76,top=34,bot=118;
+  const xAt=(y,left)=>{const t=(y-top)/(bot-top);return left?tl+(bl-tl)*t:tr+(tr-br)*-t};
+  const fillTop=c.cream?50:44;
+  let s=`<svg viewBox="0 0 100 124"><defs><linearGradient id="${u}g" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${c.liq[0]}"/><stop offset="1" stop-color="${c.liq[1]}"/></linearGradient><clipPath id="${u}k"><path d="M${tl} ${top}L${tr} ${top}L${br} ${bot}Q50 ${bot+4} ${bl} ${bot}Z"/></clipPath></defs>`;
+  s+=`<ellipse cx="50" cy="121" rx="30" ry="3" fill="rgba(0,0,0,.08)"/>`;
+  s+=`<path d="M62 4 L52 44" stroke="${c.clear?'#9ccfbf':'#12b892'}" stroke-width="6" stroke-linecap="round"/>`;
+  s+=`<g clip-path="url(#${u}k)"><rect x="0" y="${top}" width="100" height="90" fill="rgba(255,255,255,.55)"/>`;
+  s+=`<rect x="0" y="${fillTop}" width="100" height="90" fill="url(#${u}g)" opacity="${c.clear?.85:1}"/>`;
+  if(c.bottom){const h=(bot-fillTop)*c.bh;const y=c.flip?fillTop:bot-h;s+=`<rect x="0" y="${y}" width="100" height="${c.flip?h:h+6}" fill="${c.bottom}"/>`;if(!c.flip)s+=`<path d="M0 ${y} Q25 ${y-4} 50 ${y} T100 ${y}" fill="${c.bottom}"/>`;else s+=`<path d="M0 ${y+h} Q25 ${y+h+4} 50 ${y+h} T100 ${y+h} V${y+h-2} H0Z" fill="${c.bottom}"/>`}
+  if(c.stripe){for(let i=0;i<5;i++){const x=20+i*15;s+=`<path d="M${x} ${fillTop+4} Q${x+8} ${fillTop+30} ${x-2} ${bot}" stroke="#8b5a2b" stroke-width="5" fill="none" opacity=".55"/>`}}
+  if(c.cream){s+=`<rect x="0" y="${top+2}" width="100" height="${fillTop-top+2}" fill="#fffaf2"/><path d="M0 ${fillTop+2} Q12 ${fillTop+7} 25 ${fillTop+2} T50 ${fillTop+2} T75 ${fillTop+2} T100 ${fillTop+2}V${fillTop-2}H0Z" fill="#fffaf2"/>`}
+  if(c.pearl){const ps=[[30,110],[42,112],[54,111],[66,110],[36,102],[48,103],[60,102],[72,104],[28,104],[42,95],[55,95],[66,96]];ps.forEach(([x,y])=>s+=`<circle cx="${x}" cy="${y}" r="5" fill="#3a2418"/><circle cx="${x-1.6}" cy="${y-1.6}" r="1.4" fill="#fff" opacity=".35"/>`)}
+  if(c.sago){for(let i=0;i<22;i++){const x=24+(i*37)%54,y=64+(i*23)%48;s+=`<circle cx="${x}" cy="${y}" r="2.6" fill="#fff" opacity=".85"/>`}}
+  if(c.dots){for(let i=0;i<9;i++){const x=28+(i*29)%46,y=72+(i*17)%40;s+=`<ellipse cx="${x}" cy="${y}" rx="3.4" ry="2" fill="${c.dots}" transform="rotate(${i*40} ${x} ${y})"/>`}}
+  if(c.flesh){for(let i=0;i<10;i++){const x=24+(i*31)%52,y=60+(i*19)%52;s+=`<path d="M${x} ${y} l7 -3 l-2 7z" fill="${c.flesh}" opacity=".9"/>`}}
+  if(c.berry){[[34,96,7],[56,104,8],[44,78,6],[66,84,7],[30,110,6]].forEach(([x,y,r])=>s+=`<circle cx="${x}" cy="${y}" r="${r}" fill="${c.berry}"/><circle cx="${x-r/3}" cy="${y-r/3}" r="${r/4}" fill="#fff" opacity=".4"/>`)}
+  if(c.seed){for(let i=0;i<26;i++){const x=24+(i*37)%54,y=56+(i*29)%58;s+=`<ellipse cx="${x}" cy="${y}" rx="1.8" ry="1.2" fill="#3b2a14"/>`}}
+  if(c.lemon){[[38,80],[62,96],[46,108]].forEach(([x,y])=>s+=`<circle cx="${x}" cy="${y}" r="10" fill="#fff6b0" stroke="#f5d33a" stroke-width="2.5"/><path d="M${x} ${y-8}V${y+8}M${x-8} ${y}H${x+8}M${x-5.6} ${y-5.6}L${x+5.6} ${y+5.6}M${x+5.6} ${y-5.6}L${x-5.6} ${y+5.6}" stroke="#f5d33a" stroke-width="1"/>`)}
+  if(!c.cream&&!c.clear)for(let i=0;i<4;i++){const x=26+i*14,y=fillTop+4+(i%2)*6;s+=`<rect x="${x}" y="${y}" width="10" height="10" rx="2" fill="#fff" opacity=".5" transform="rotate(${i*20+10} ${x+5} ${y+5})"/>`}
+  if(c.clear)for(let i=0;i<5;i++){const x=24+i*11,y=fillTop+6+(i%2)*8;s+=`<rect x="${x}" y="${y}" width="11" height="11" rx="2" fill="#fff" opacity=".55" transform="rotate(${i*25} ${x+5} ${y+5})"/>`}
+  s+=`<rect x="10" y="${top}" width="9" height="90" fill="#fff" opacity=".28" transform="skewX(6)"/></g>`;
+  s+=`<path d="M${tl} ${top}L${tr} ${top}L${br} ${bot}Q50 ${bot+4} ${bl} ${bot}Z" fill="none" stroke="rgba(0,0,0,.12)" stroke-width="1.2"/>`;
+  s+=`<rect x="10" y="${top-6}" width="80" height="7" rx="3.5" fill="#fff" stroke="rgba(0,0,0,.1)"/>`;
+  s+=`<rect x="31" y="78" width="38" height="16" rx="8" fill="#fff" opacity=".92"/><text x="50" y="89.5" text-anchor="middle" font-size="9.5" font-weight="700" fill="#12b892" font-family="PingFang SC,Microsoft YaHei,sans-serif">茶屿</text>`;
+  return s+'</svg>';
+}
+
+const $=s=>document.querySelector(s);
+const screen=$('#screen');
+const state={mode:'self',cart:[],spec:null,note:new Set()};
+
+function toast(t){const el=$('#toast');el.textContent=t;el.classList.add('show');clearTimeout(el._t);el._t=setTimeout(()=>el.classList.remove('show'),1500)}
+
+let slide=0;
+setInterval(()=>{slide=(slide+1)%3;$('#slides').style.transform=`translateX(-${slide*100}%)`;document.querySelectorAll('#dots i').forEach((d,i)=>d.classList.toggle('on',i===slide))},3200);
+
+$('#mode').onclick=e=>{const b=e.target.closest('button');if(!b)return;state.mode=b.dataset.m;document.querySelectorAll('#mode button').forEach(x=>x.classList.toggle('on',x===b));renderCart()};
+
+function renderMenu(){
+  $('#side').innerHTML=CATS.map((c,i)=>`<button data-c="${c.id}" class="${i?'':'on'}">${c.name}<span class="n" hidden></span></button>`).join('');
+  $('#list').innerHTML=CATS.map(c=>`<h4 id="cat-${c.id}">${c.name}</h4>`+ITEMS.filter(i=>i.cat===c.id).map(i=>`
+    <div class="item">
+      <div class="thumb" style="background:${i.cup.bg}">${cupSVG(i.cup)}</div>
+      <div class="info">
+        <div class="nm">${i.name}</div>
+        <div class="ds">${i.desc}</div>
+        <div class="tags">${i.tags.map(t=>`<span class="${i.hot?'hot':''}">${t}</span>`).join('')}</div>
+        <div class="bt"><span class="price"><small>¥</small>${i.price}<em>起</em></span><button class="pick" data-id="${i.id}">选规格<span class="n" hidden></span></button></div>
+      </div>
+    </div>`).join('')).join('');
+}
+renderMenu();
+
+const list=$('#list');
+$('#side').onclick=e=>{const b=e.target.closest('button');if(!b)return;const h=$('#cat-'+b.dataset.c);lockSpy=true;list.scrollTop=h.offsetTop-list.offsetTop;setSide(b.dataset.c);setTimeout(()=>lockSpy=false,500)};
+let lockSpy=false;
+function setSide(id){document.querySelectorAll('#side button').forEach(x=>x.classList.toggle('on',x.dataset.c===id))}
+list.addEventListener('scroll',()=>{if(lockSpy)return;let cur=CATS[0].id;CATS.forEach(c=>{if($('#cat-'+c.id).offsetTop-list.offsetTop-10<=list.scrollTop)cur=c.id});if(list.scrollTop+list.clientHeight>=list.scrollHeight-4)cur=CATS[CATS.length-1].id;setSide(cur)});
+list.onclick=e=>{const b=e.target.closest('.pick');if(b)openSpec(+b.dataset.id,b)};
+
+const mask=$('#mask');
+function openSheet(el){mask.classList.add('show');el.classList.add('show')}
+function closeSheets(){mask.classList.remove('show');document.querySelectorAll('.sheet').forEach(s=>s.classList.remove('show'))}
+mask.onclick=closeSheets;
+
+function specPrice(item,sel){let p=item.price;SPEC.forEach(g=>{const v=sel[g.key];(g.multi?[...v]:[v]).forEach(n=>{const o=g.opts.find(o=>o[0]===n);if(o)p+=o[1]})});return p}
+function specText(sel){return [sel.size,sel.sugar,sel.ice,...sel.add].join(' / ')}
+
+function openSpec(id,from){
+  const item=ITEMS.find(i=>i.id===id);
+  state.spec={item,from,qty:1,sel:{size:'中杯',sugar:'标准糖',ice:'正常冰',add:new Set()}};
+  if(item.cat==='tea')state.spec.sel.sugar='不另加糖';
+  renderSpec();openSheet($('#specSheet'));
+}
+function renderSpec(){
+  const {item,sel,qty}=state.spec;
+  const unit=specPrice(item,sel);
+  $('#specSheet').innerHTML=`
+    <button class="x" data-close><svg width="14" height="14" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+    <div class="spec-hd"><div class="thumb" style="background:${item.cup.bg}">${cupSVG(item.cup)}</div><div><b>${item.name}</b><p>${item.desc}</p></div></div>
+    <div class="spec-bd">${SPEC.map(g=>`<div class="grp"><h5>${g.name}${g.tip?`<small>${g.tip}</small>`:''}</h5><div class="chips">${g.opts.map(([n,p])=>{const on=g.multi?sel.add.has(n):sel[g.key]===n;return `<button class="chip ${on?'on':''}" data-g="${g.key}" data-v="${n}">${n}${p?`<small>+¥${p}</small>`:''}</button>`}).join('')}</div></div>`).join('')}</div>
+    <div class="spec-ft">
+      <div class="l"><span class="price"><small>¥</small>${unit*qty}</span><div class="sel">${specText(sel)}</div></div>
+      <div class="step"><button data-q="-1">-</button><span>${qty}</span><button class="add" data-q="1">+</button></div>
+      <button class="btn" data-add>加入购物车</button>
+    </div>`;
+}
+$('#specSheet').onclick=e=>{
+  const t=e.target.closest('button');if(!t)return;
+  const sp=state.spec;
+  if(t.dataset.close!==undefined)return closeSheets();
+  if(t.dataset.g){const g=SPEC.find(g=>g.key===t.dataset.g);if(g.multi){sp.sel.add.has(t.dataset.v)?sp.sel.add.delete(t.dataset.v):sp.sel.add.add(t.dataset.v)}else sp.sel[g.key]=t.dataset.v;return renderSpec()}
+  if(t.dataset.q){sp.qty=Math.max(1,sp.qty+ +t.dataset.q);return renderSpec()}
+  if(t.dataset.add!==undefined){
+    const text=specText(sp.sel),key=sp.item.id+'|'+text,unit=specPrice(sp.item,sp.sel);
+    const ex=state.cart.find(c=>c.key===key);
+    ex?ex.qty+=sp.qty:state.cart.push({key,item:sp.item,text,unit,qty:sp.qty});
+    closeSheets();fly(sp.from);setTimeout(renderCart,520);
+  }
+};
+
+function fly(from){
+  const sr=screen.getBoundingClientRect(),a=from.getBoundingClientRect(),b=$('#bag').getBoundingClientRect();
+  const d=document.createElement('div');d.className='fly';
+  d.style.left=(a.left-sr.left+a.width/2-9)+'px';d.style.top=(a.top-sr.top)+'px';screen.appendChild(d);
+  requestAnimationFrame(()=>requestAnimationFrame(()=>{d.style.left=(b.left-sr.left+b.width/2-9)+'px';d.style.top=(b.top-sr.top+b.height/2-9)+'px';d.style.opacity='.4'}));
+  setTimeout(()=>{d.remove();const bag=$('#bag');bag.classList.remove('bump');void bag.offsetWidth;bag.classList.add('bump')},560);
+}
+
+const count=()=>state.cart.reduce((s,c)=>s+c.qty,0);
+const goods=()=>state.cart.reduce((s,c)=>s+c.qty*c.unit,0);
+function bill(){
+  const g=goods(),pack=count(),ship=state.mode==='ship'?4:0;
+  const disc=g>=40?8:g>=25?4:0;
+  return {g,pack,ship,disc,pay:g+pack+ship-disc};
+}
+function renderCart(){
+  const n=count(),bar=$('#cartbar');
+  bar.classList.toggle('has',n>0);$('#bagN').textContent=n;
+  const b=bill();
+  $('#sum').innerHTML=n?`<b>¥${b.g}</b><small>${b.disc?`已享满减 -¥${b.disc}`:`再买 ¥${25-b.g} 可减 ¥4`}</small>`:`<small style="font-size:13px">未选购商品</small><small>${state.mode==='ship'?'外送另需配送费 ¥4':'到店自取 免排队'}</small>`;
+  const per={},perCat={};
+  state.cart.forEach(c=>{per[c.item.id]=(per[c.item.id]||0)+c.qty;perCat[c.item.cat]=(perCat[c.item.cat]||0)+c.qty});
+  document.querySelectorAll('.pick').forEach(p=>{const v=per[p.dataset.id],s=p.querySelector('.n');s.hidden=!v;s.textContent=v||''});
+  document.querySelectorAll('#side button').forEach(p=>{const v=perCat[p.dataset.c],s=p.querySelector('.n');s.hidden=!v;s.textContent=v||''});
+  if($('#cartSheet').classList.contains('show'))renderCartSheet();
+}
+renderCart();
+
+function renderCartSheet(){
+  if(!state.cart.length){closeSheets();return}
+  $('#cartSheet').innerHTML=`
+    <div class="cart-hd"><b>已选商品</b><button data-clear><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h16M9 7V4h6v3M6 7l1 13h10l1-13"/></svg>清空</button></div>
+    <div class="cart-bd">${state.cart.map((c,i)=>`
+      <div class="crow"><div class="thumb" style="background:${c.item.cup.bg}">${cupSVG(c.item.cup)}</div>
+      <div class="mid"><b>${c.item.name}</b><small>${c.text}</small><span class="price"><small>¥</small>${c.unit}</span></div>
+      <div class="step"><button data-i="${i}" data-q="-1">-</button><span>${c.qty}</span><button class="add" data-i="${i}" data-q="1">+</button></div></div>`).join('')}</div>`;
+}
+$('#bag').onclick=()=>{if(!state.cart.length)return toast('购物车还是空的');const s=$('#cartSheet');if(s.classList.contains('show'))return closeSheets();renderCartSheet();openSheet(s)};
+$('#cartSheet').onclick=e=>{
+  const t=e.target.closest('button');if(!t)return;
+  if(t.dataset.clear!==undefined){state.cart=[];renderCart();closeSheets();return}
+  const c=state.cart[t.dataset.i];c.qty+= +t.dataset.q;if(c.qty<=0)state.cart.splice(t.dataset.i,1);renderCart();
+};
+
+const stack=['pMenu'];
+function go(id,title){$('#'+stack[stack.length-1]);stack.push(id);$('#'+id).classList.remove('off');setBar(title)}
+function backTo(){if(stack.length<2)return;const cur=stack.pop();$('#'+cur).classList.add('off');setBar(stack.length>1?'确认订单':'茶屿点单')}
+function setBar(t){$('#title').textContent=t;$('#wxbar').classList.toggle('sub',stack.length>1&&stack[stack.length-1]!=='pOk');$('#tabbar').style.display=stack.length>1?'none':''}
+$('#back').onclick=backTo;
+
+$('#go').onclick=()=>{if(!state.cart.length)return toast('先选一杯喜欢的吧');closeSheets();renderCheck();go('pCheck','确认订单')};
+
+function renderCheck(){
+  const b=bill(),self=state.mode==='self';
+  $('#ck').innerHTML=`
+    <div class="box">
+      <div class="seg" id="ckMode" style="width:max-content;margin-bottom:14px"><button class="${self?'on':''}" data-m="self">到店自取</button><button class="${self?'':'on'}" data-m="ship">外送到家</button></div>
+      <div class="addr">${self?`<b>茶屿 · 海湾路店</b><small>海湾路 27 号一楼 · 距你 320m</small>`:`<b>星港小区 3 栋 1202</b><small>林同学 138****0000</small>`}</div>
+      <div class="when">${self?`<button class="chip on">立即取餐</button><button class="chip">预约 30 分钟后</button>`:`<button class="chip on">尽快送达 约 35 分钟</button>`}</div>
+    </div>
+    <div class="box">
+      <h6>商品清单<span>共 ${count()} 杯</span></h6>
+      ${state.cart.map(c=>`<div class="crow"><div class="thumb" style="background:${c.item.cup.bg}">${cupSVG(c.item.cup)}</div><div class="mid"><b>${c.item.name}</b><small>${c.text}</small></div><div style="text-align:right"><div class="price"><small>¥</small>${c.unit*c.qty}</div><small style="color:var(--ink-3);font-size:12px">x${c.qty}</small></div></div>`).join('')}
+      <div class="line"><span>商品金额</span><span>¥${b.g}</span></div>
+      <div class="line"><span>打包费</span><span>¥${b.pack}</span></div>
+      ${b.ship?`<div class="line"><span>配送费</span><span>¥${b.ship}</span></div>`:''}
+      <div class="line"><span class="cp"><i>满减</i>满 25 减 4 · 满 40 减 8</span><span class="neg">${b.disc?'-¥'+b.disc:'未满足'}</span></div>
+      <div class="total">实付 <b>¥${b.pay}</b></div>
+    </div>
+    <div class="box">
+      <h6>备注</h6>
+      <div class="note">${['不要吸管','分开打包','少冰一点','多加冰'].map(n=>`<button class="chip ${state.note.has(n)?'on':''}" data-n="${n}">${n}</button>`).join('')}</div>
+    </div>`;
+  $('#payS').innerHTML=`实付 <b>¥${b.pay}</b>${b.disc?`<small>已优惠 ¥${b.disc}</small>`:''}`;
+}
+$('#ck').onclick=e=>{
+  const t=e.target.closest('button');if(!t)return;
+  if(t.dataset.m){state.mode=t.dataset.m;document.querySelectorAll('#mode button').forEach(x=>x.classList.toggle('on',x.dataset.m===state.mode));renderCart();renderCheck()}
+  else if(t.dataset.n){state.note.has(t.dataset.n)?state.note.delete(t.dataset.n):state.note.add(t.dataset.n);renderCheck()}
+  else if(t.parentElement.classList.contains('when')){t.parentElement.querySelectorAll('.chip').forEach(x=>x.classList.toggle('on',x===t))}
+};
+
+$('#submit').onclick=()=>{
+  const no=(state.mode==='self'?'A':'W')+String(Math.floor(Math.random()*900)+100);
+  const self=state.mode==='self';
+  $('#ok').innerHTML=`
+    <div class="big"><svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div>
+    <h2>下单成功</h2>
+    <div class="sub">${self?'请留意叫号，凭取餐号到店取餐':'骑手接单后会第一时间送达'}</div>
+    <div class="ticket">
+      <small>${self?'取餐号':'订单号'}</small>
+      <div class="no">${no}</div>
+      <small>共 ${count()} 杯 · 实付 ¥${bill().pay}</small>
+      <div class="dash"></div>
+      <div class="prog"><div class="on"><i></i>已下单</div><div class="on cur"><i></i>制作中</div><div><i></i>${self?'待取餐':'配送中'}</div></div>
+    </div>
+    <div class="eta">预计 <b>${self?'12':'35'} 分钟</b>后${self?'可取':'送达'}，前面还有 3 单</div>
+    <button class="btn again" id="again">再来一单</button>`;
+  go('pOk','订单详情');
+  $('#again').onclick=()=>{state.cart=[];state.note.clear();renderCart();['pOk','pCheck'].forEach(id=>$('#'+id).classList.add('off'));stack.length=1;setBar('茶屿点单');list.scrollTop=0};
+};
+
+$('#tabbar').onclick=e=>{const b=e.target.closest('button');if(b&&b.dataset.t!=='menu')toast('演示版仅开放点单页')};
+</script>
+</body>
+</html>

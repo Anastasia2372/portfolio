@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>作品集</title>
+<style>
+:root{--bg:#0f1420;--card:#1a2130;--ink:#fff;--ink-2:#9aa6bb;--gold:#ffd166}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--ink);font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;min-height:100vh;padding:64px 20px}
+.wrap{max-width:980px;margin:0 auto}
+h1{font-size:40px;font-weight:900;letter-spacing:2px}
+h1 em{font-style:normal;color:var(--gold)}
+.sub{color:var(--ink-2);margin-top:10px;font-size:16px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:44px}
+a.card{display:block;background:var(--card);border-radius:20px;padding:26px;color:inherit;text-decoration:none;transition:transform .25s,box-shadow .25s;border-top:4px solid var(--c)}
+a.card:hover{transform:translateY(-6px);box-shadow:0 18px 40px rgba(0,0,0,.4)}
+.card small{font-size:13px;font-weight:700;color:var(--c);letter-spacing:2px}
+.card h2{font-size:22px;margin:10px 0 8px}
+.card p{font-size:14px;color:var(--ink-2);line-height:1.8}
+.card span{display:inline-block;margin-top:18px;font-size:14px;font-weight:700;color:var(--c)}
+.foot{margin-top:48px;color:var(--ink-2);font-size:14px;line-height:1.9}
+.foot b{color:var(--gold)}
+@media (max-width:760px){.grid{grid-template-columns:1fr}h1{font-size:30px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>网页 / <em>小程序</em> 定制作品集</h1>
+  <p class="sub">点开即可在线体验，手机和电脑都能看</p>
+  <div class="grid">
+    <a class="card" href="cafe/" style="--c:#d6a06b"><small>品牌官网</small><h2>半岛咖啡</h2><p>门店官网：品牌故事、菜单筛选、门店图墙、到店指南。</p><span>打开体验 →</span></a>
+    <a class="card" href="tea/" style="--c:#3fd3ac"><small>微信小程序</small><h2>茶屿 · 奶茶点单</h2><p>选规格、加购物车、满减计算、确认订单、取餐号，完整点单流程。</p><span>打开体验 →</span></a>
+    <a class="card" href="quiz/" style="--c:#ff7aa2"><small>H5 活动页</small><h2>测测你是哪杯奶茶</h2><p>8 道题的趣味测试，算出结果后可以一键生成分享海报。</p><span>打开体验 →</span></a>
+  </div>
+  <p class="foot">另有开源作品 CardForge（桌面 + 网页双端工具），GitHub <b>215 Star</b>。<br>以上均为演示作品，店名、菜品、地址等内容均为虚构。</p>
+</div>
+</body>
+</html>
