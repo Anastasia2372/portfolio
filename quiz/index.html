@@ -1,16 +1,15 @@
 <!doctype html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>测测你是哪杯奶茶</title>
+<title>Which Bubble Tea Are You?</title>
 <style>
 @font-face {
-  font-family: 'ZCOOL KuaiLe';
+  font-family: 'Fredoka';
   font-style: normal;
-  font-weight: 400;
-  src: url(fonts/fun1.woff2) format('woff2');
-  unicode-range: U+21-5b, U+5d, U+60-7d, U+b7, U+2026, U+3001-3002, U+4e00, U+4e0a-4e0b, U+4e0d-4e0e, U+4e13, U+4e2a, U+4e30, U+4e3a-4e3b, U+4e48, U+4e4b, U+4e5f-4e60, U+4e66, U+4e86, U+4e8b, U+4ea4, U+4eab, U+4eae, U+4eba, U+4ec0, U+4ece, U+4ed6, U+4f1a, U+4f46, U+4f5c, U+4f60, U+4fbf, U+4fdd, U+5019, U+505a, U+505c, U+5076-5077, U+50ac, U+50cf, U+5143, U+5148, U+5173, U+5175-5176, U+5178, U+5185, U+518c-518d, U+51b0, U+51b3, U+51b7, U+51c9, U+51e0, U+51fa, U+5206, U+5212, U+521a, U+522b, U+5230, U+5236, U+524d, U+5267, U+529b, U+529e, U+52a0, U+52a8, U+5300, U+5305, U+534a, U+5356, U+5361, U+5373, U+53bb, U+53c2, U+53c8, U+53cb, U+53d1, U+53d8, U+53ea, U+53ef, U+5403, U+5408, U+540e, U+5410, U+5446, U+5468, U+5473, U+548c, U+5496, U+54c1, U+54cd, U+54e8, U+54ea, U+5561, U+559c, U+561b, U+5634, U+56de, U+56fe, U+5728, U+573a, U+574f, U+58f0, U+5907, U+5916, U+591a, U+5927, U+5929-592a, U+5934, U+594f, U+5976, U+597d, U+5982, U+59cb, U+5b50, U+5b58, U+5b63, U+5b85, U+5b89, U+5b9a, U+5b9e, U+5bb6, U+5bb9, U+5bc6, U+5bcc, U+5bf9, U+5c0f, U+5c14, U+5c31, U+5c40, U+5c5e, U+5de5, U+5df1-5df2, U+5e26, U+5e38, U+5e72-5e73, U+5e97, U+5ea6, U+5f00, U+5f0f, U+5f53, U+5f62, U+5f85, U+5f88, U+5fc3, U+5fd8, U+5feb, U+5ff5, U+6027, U+6089, U+60c5, U+60ef, U+60f3, U+6108, U+611f, U+6162, U+61d2, U+6211, U+622a, U+6234, U+624b, U+624d, U+6253, U+627e, U+628a, U+62a5, U+62c5, U+62e5, U+62ff, U+6302, U+6309, U+6392, U+63a5, U+63d0, U+642d, U+6447, U+653b, U+6548, U+6574, U+6599, U+65b9, U+65c5, U+65e0, U+65e6-65e7, U+65e9, U+65f6, U+660e, U+662f, U+665a, U+6682, U+66f4, U+6700, U+6709, U+670b, U+672b-672c, U+673a, U+6765, U+6768, U+676f, U+679c-679d, U+67d0, U+67d4, U+67e0, U+6837-6838, U+683c, U+6930, U+695a, U+69fd, U+6aac, U+6b21-6b22, U+6b63, U+6c14, U+6c38, U+6ca1, U+6cbb, U+6ce2, U+6ce5, U+6d3e, U+6d4b, U+6d6a, U+6d77, U+6e05, U+6e29, U+6ee1, U+6f14, U+70b9, U+70ed, U+7167, U+719f, U+7231, U+723d, U+7247, U+7279, U+72d7, U+732b, U+7387, U+73a9, U+73b0, U+73cd, U+73e0, U+7403, U+7406, U+7518, U+751c, U+751f, U+7535, U+7565, U+7684, U+76f4, U+76f8, U+770b, U+773c, U+7740, U+7761, U+77ac, U+77e5, U+793e, U+79bb, U+79cd, U+79fb, U+7a00, U+7a7a, U+7a9d, U+7b2c, U+7b97, U+7cef, U+7cfb, U+7d2f, U+7ea0, U+7ea6, U+7ec6, U+7ecf, U+7ed3, U+7ed9, U+7ef5, U+8001, U+8017, U+8033, U+804a, U+80fd, U+8111, U+81ea, U+8282, U+828b, U+82b1, U+8336, U+85cf, U+884c, U+8868, U+88ab, U+8981, U+89c1, U+89c9, U+8ba1, U+8ba4, U+8ba9, U+8bc4, U+8bcd, U+8bd5, U+8bdd, U+8be6, U+8bf4, U+8c01, U+8c03, U+8c31, U+8d70, U+8d77, U+8d85, U+8da3, U+8e29, U+8eba, U+8f6f, U+8f7d, U+8fb9, U+8fbe, U+8fc7, U+8fd1, U+8fd8-8fd9, U+8fdc, U+8fdf, U+8ffd, U+9009, U+901a-901b, U+9053, U+90a3, U+90fd, U+914d, U+9152, U+9178, U+9192, U+91cc, U+94c1, U+957f, U+95ed, U+95f4, U+9633, U+968f-9690, U+96be, U+96f7, U+9700, U+971e, U+9732, U+9759, U+9760, U+987e-987f, U+9898, U+996d-996e, U+9986, U+9a6c, U+ff01, U+ff0c, U+ff1f;
+  font-weight: 400 700;
+  src: url(fonts/fredoka.woff2) format('woff2');
 }
 :root{
   --ink:#2a2230;
@@ -19,8 +18,8 @@
   --mint:#5fd3b3;
   --purple:#a98bff;
   --paper:#fffaf3;
-  --fun:"ZCOOL KuaiLe","PingFang SC","Microsoft YaHei",sans-serif;
-  --sans:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;
+  --fun:"Fredoka","Segoe UI",Arial,sans-serif;
+  --sans:-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
   --theme:#ff7aa2;
   --theme-l:#ffe3ec;
 }
@@ -40,8 +39,8 @@ svg{display:block}
 .cover .b1{width:200px;height:200px;background:#ffb3c9;top:-60px;left:-60px}
 .cover .b2{width:160px;height:160px;background:#ffe27a;bottom:120px;right:-50px}
 .cover .badge{position:relative;background:#fff;border:2.5px solid var(--ink);border-radius:20px;padding:4px 14px;font-size:13px;font-weight:700;box-shadow:3px 3px 0 var(--ink);transform:rotate(-3deg)}
-.cover h1{position:relative;font-family:var(--fun);font-weight:400;font-size:46px;line-height:1.2;margin-top:22px;color:var(--ink);text-shadow:3px 3px 0 #fff}
-.cover h1 span{color:var(--pink);display:block;font-size:56px;-webkit-text-stroke:2px var(--ink);text-shadow:4px 4px 0 var(--ink)}
+.cover h1{position:relative;font-family:var(--fun);font-weight:600;font-size:38px;line-height:1.1;margin-top:22px;color:var(--ink);text-shadow:3px 3px 0 #fff}
+.cover h1 span{color:var(--pink);display:block;font-size:54px;margin:4px 0;-webkit-text-stroke:2px var(--ink);text-shadow:4px 4px 0 var(--ink)}
 .cover .sub{position:relative;margin-top:12px;font-size:14px;color:#6b5a66}
 .cups{position:relative;height:250px;width:100%;margin:10px 0}
 .cups .c{position:absolute;width:96px;animation:float 3s ease-in-out infinite}
@@ -52,7 +51,7 @@ svg{display:block}
 .cups .c:nth-child(4){left:56px;top:162px;width:70px;transform:rotate(8deg);animation-delay:-.8s}
 .cups .c:nth-child(5){right:58px;top:166px;width:70px;transform:rotate(-8deg);animation-delay:-1.6s}
 @keyframes float{50%{translate:0 -12px}}
-.cta{display:block;text-align:center;text-decoration:none;position:relative;width:100%;padding:17px;border-radius:30px;background:var(--pink);color:#fff;font-family:var(--fun);font-size:24px;border:3px solid var(--ink);box-shadow:5px 5px 0 var(--ink);transition:transform .1s,box-shadow .1s;letter-spacing:2px}
+.cta{display:block;text-align:center;text-decoration:none;position:relative;width:100%;padding:17px;border-radius:30px;background:var(--pink);color:#fff;font-family:var(--fun);font-weight:600;font-size:24px;border:3px solid var(--ink);box-shadow:5px 5px 0 var(--ink);transition:transform .1s,box-shadow .1s;letter-spacing:.5px}
 .cta:active{transform:translate(4px,4px);box-shadow:1px 1px 0 var(--ink)}
 .cta.alt{background:#fff;color:var(--ink)}
 .joined{position:relative;margin-top:16px;font-size:13px;color:#6b5a66;display:flex;align-items:center;gap:8px}
@@ -62,7 +61,7 @@ svg{display:block}
 
 .quiz{background:var(--paper);padding:58px 22px 30px}
 .qtop{display:flex;align-items:center;gap:12px}
-.qtop .qn{font-family:var(--fun);font-size:22px}
+.qtop .qn{font-family:var(--fun);font-weight:600;font-size:22px}
 .qtop .qn small{font-size:15px;color:#a4949f}
 .bar{flex:1;height:14px;border-radius:7px;border:2.5px solid var(--ink);background:#fff;overflow:hidden}
 .bar i{display:block;height:100%;background:repeating-linear-gradient(-45deg,var(--pink) 0 8px,#ff96b6 8px 16px);transition:width .4s;border-right:2.5px solid var(--ink)}
@@ -70,19 +69,19 @@ svg{display:block}
 .qcard.out{transform:translateX(-40px);opacity:0}
 .qcard.in{transform:translateX(40px);opacity:0;transition:none}
 .qemo{width:88px;height:88px;border-radius:26px;border:2.5px solid var(--ink);box-shadow:4px 4px 0 var(--ink);display:grid;place-items:center;margin-bottom:22px;transform:rotate(-4deg)}
-.qcard h2{font-family:var(--fun);font-weight:400;font-size:28px;line-height:1.35}
+.qcard h2{font-family:var(--fun);font-weight:600;font-size:27px;line-height:1.25}
 .opts{margin-top:28px;display:grid;gap:14px}
-.opt{display:flex;align-items:center;gap:14px;width:100%;text-align:left;background:#fff;border:2.5px solid var(--ink);border-radius:18px;padding:15px 16px;font-size:16px;font-weight:600;box-shadow:4px 4px 0 var(--ink);transition:transform .12s,box-shadow .12s,background .2s}
+.opt{display:flex;align-items:center;gap:14px;width:100%;text-align:left;background:#fff;border:2.5px solid var(--ink);border-radius:18px;padding:13px 16px;font-size:15.5px;line-height:1.3;font-weight:600;box-shadow:4px 4px 0 var(--ink);transition:transform .12s,box-shadow .12s,background .2s}
 .opt:active,.opt.pick{transform:translate(3px,3px);box-shadow:1px 1px 0 var(--ink)}
 .opt.pick{background:var(--yellow)}
-.opt b{flex:none;width:32px;height:32px;border-radius:10px;border:2.5px solid var(--ink);display:grid;place-items:center;font-family:var(--fun);font-weight:400;font-size:17px}
+.opt b{flex:none;width:32px;height:32px;border-radius:10px;border:2.5px solid var(--ink);display:grid;place-items:center;font-family:var(--fun);font-weight:600;font-size:17px}
 .opt:nth-child(1) b{background:#ffd6e3}.opt:nth-child(2) b{background:#fff0b3}.opt:nth-child(3) b{background:#c9f2e6}.opt:nth-child(4) b{background:#e6dcff}
 .qback{margin-top:auto;align-self:center;font-size:14px;color:#a4949f;display:flex;gap:4px;align-items:center;padding:8px}
 
 .mix{background:linear-gradient(180deg,#fff1c9,#ffd6e3);align-items:center;justify-content:center;text-align:center}
 .shaker{width:120px;animation:shake .35s ease-in-out infinite alternate;transform-origin:50% 90%}
 @keyframes shake{from{transform:rotate(-14deg)}to{transform:rotate(14deg)}}
-.mix h3{font-family:var(--fun);font-weight:400;font-size:26px;margin-top:30px}
+.mix h3{font-family:var(--fun);font-weight:600;font-size:26px;margin-top:30px;padding:0 30px}
 .mix p{font-size:14px;color:#6b5a66;margin-top:8px;height:20px}
 .mix .dots i{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--ink);margin:16px 4px 0;animation:dot 1s infinite}
 .mix .dots i:nth-child(2){animation-delay:.15s}.mix .dots i:nth-child(3){animation-delay:.3s}
@@ -94,22 +93,22 @@ svg{display:block}
 @keyframes rise{from{transform:translateY(40px) scale(.95);opacity:0}}
 .ph{background:var(--theme);padding:22px 20px 0;position:relative;text-align:center;overflow:hidden;border-bottom:3px solid var(--ink)}
 .ph::before{content:"";position:absolute;inset:0;background:radial-gradient(rgba(255,255,255,.35) 2px,transparent 2px) 0 0/18px 18px}
-.ph small{position:relative;font-size:13px;color:#fff;font-weight:700;letter-spacing:2px;background:var(--ink);padding:3px 12px;border-radius:12px}
-.ph h2{position:relative;font-family:var(--fun);font-weight:400;font-size:44px;color:#fff;-webkit-text-stroke:1.5px var(--ink);text-shadow:3px 3px 0 var(--ink);margin-top:10px;line-height:1.2}
+.ph small{position:relative;font-size:13px;color:#fff;font-weight:700;letter-spacing:.5px;background:var(--ink);padding:3px 12px;border-radius:12px}
+.ph h2{position:relative;font-family:var(--fun);font-weight:600;font-size:40px;color:#fff;-webkit-text-stroke:1.5px var(--ink);text-shadow:3px 3px 0 var(--ink);margin-top:10px;line-height:1.2}
 .ph .cupbig{position:relative;width:150px;margin:6px auto -6px;animation:float 3s ease-in-out infinite}
 .ph .sun{position:absolute;left:50%;bottom:-70px;width:240px;height:240px;margin-left:-120px;border-radius:50%;background:rgba(255,255,255,.3)}
 .pb{padding:20px 20px 22px}
 .kw{display:flex;gap:8px;justify-content:center;flex-wrap:wrap}
 .kw span{border:2px solid var(--ink);border-radius:14px;padding:3px 12px;font-size:13px;font-weight:700;background:var(--theme-l)}
-.desc{font-size:14.5px;line-height:1.85;margin-top:16px;color:#4b3f48;text-align:justify}
+.desc{font-size:14.5px;line-height:1.7;margin-top:16px;color:#4b3f48}
 .meta{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:18px}
-.meta div{border:2px solid var(--ink);border-radius:16px;padding:10px;display:flex;align-items:center;gap:8px;white-space:nowrap}
+.meta div{border:2px solid var(--ink);border-radius:16px;padding:10px 8px;display:flex;align-items:center;gap:8px;line-height:1.2}
 .meta svg{width:30px;flex:none}
 .meta small{display:block;font-size:11px;color:#8f7f8a}
-.meta b{font-size:15px}
-.meta .pct{font-family:var(--fun);font-size:26px;font-weight:400;line-height:1;color:var(--theme);-webkit-text-stroke:.8px var(--ink)}
-.sig{display:flex;justify-content:space-between;align-items:center;margin-top:18px;padding-top:14px;border-top:2px dashed #e5d9df;font-size:12px;color:#8f7f8a}
-.sig b{font-family:var(--fun);font-weight:400;font-size:16px;color:var(--ink)}
+.meta b{font-size:13px;white-space:nowrap}
+.meta .pct{font-family:var(--fun);font-size:22px;font-weight:600;line-height:1;color:var(--theme);-webkit-text-stroke:.8px var(--ink)}
+.sig{display:flex;flex-direction:column;gap:2px;align-items:center;margin-top:18px;padding-top:14px;border-top:2px dashed #e5d9df;font-size:12px;color:#8f7f8a}
+.sig b{font-family:var(--fun);font-weight:600;font-size:17px;color:var(--ink)}
 .acts{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:22px}
 .acts .cta{font-size:19px;padding:13px}
 
@@ -133,23 +132,23 @@ svg{display:block}
 
     <section class="view cover on" id="vCover">
       <div class="blob b1"></div><div class="blob b2"></div>
-      <div class="badge">趣味测试 · 8 道题</div>
-      <h1>测测你是<span>哪杯奶茶</span></h1>
-      <p class="sub">你的隐藏饮品人格，一测就知道</p>
+      <div class="badge">Fun Quiz · 8 Questions</div>
+      <h1>Which<span>Bubble Tea</span>Are You?</h1>
+      <p class="sub">Find your hidden drink personality in one minute</p>
       <div class="cups" id="coverCups"></div>
-      <button class="cta" id="start">开始测试</button>
-      <div class="joined"><span class="av"><i style="background:#ff9fbd"></i><i style="background:#ffd23f"></i><i style="background:#5fd3b3"></i><i style="background:#a98bff"></i></span>已有 <b id="cnt">128,604</b> 人参与</div>
+      <button class="cta" id="start">Start Quiz</button>
+      <div class="joined"><span class="av"><i style="background:#ff9fbd"></i><i style="background:#ffd23f"></i><i style="background:#5fd3b3"></i><i style="background:#a98bff"></i></span><b id="cnt">128,604</b> people have played</div>
     </section>
 
     <section class="view quiz" id="vQuiz">
       <div class="qtop"><div class="qn" id="qn"></div><div class="bar"><i id="bar"></i></div></div>
       <div class="qcard" id="qcard"></div>
-      <button class="qback" id="qback"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M15 5l-7 7 7 7"/></svg>上一题</button>
+      <button class="qback" id="qback"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M15 5l-7 7 7 7"/></svg>Back</button>
     </section>
 
     <section class="view mix" id="vMix">
       <div class="shaker" id="shaker"></div>
-      <h3>正在为你调制专属饮品</h3>
+      <h3>Mixing up your drink...</h3>
       <p id="mixTip"></p>
       <div class="dots"><i></i><i></i><i></i></div>
     </section>
@@ -158,39 +157,39 @@ svg{display:block}
 
     <div class="modal" id="modal">
       <img id="posterImg" alt="">
-      <p>手机上长按图片即可保存</p>
-      <div class="row"><a class="cta" id="dl" download="我的奶茶人格.png">下载图片</a><button class="cta alt" id="mClose">关闭</button></div>
+      <p>On your phone, press and hold the image to save it</p>
+      <div class="row"><a class="cta" id="dl" download="my-bubble-tea.png">Download</a><button class="cta alt" id="mClose">Close</button></div>
     </div>
   </div>
 </div>
 
 <script>
 const R={
-  mango:{name:'杨枝甘露',theme:'#ffbf1f',light:'#fff3cf',kw:['小太阳','温柔有主见','治愈系'],rare:18,mate:'taro',
-    desc:'你像一杯刚做好的杨枝甘露，明亮、清甜，让人一靠近就心情变好。你对朋友温柔，但心里很清楚自己想要什么，不会随便被别人带着走。累的时候也会偷偷emo，不过睡一觉又是元气满满的一天。',
+  mango:{name:'Mango Sago',theme:'#ffbf1f',light:'#fff3cf',kw:['Little Sunshine','Kind but Decisive','Healing Vibes'],rare:18,mate:'taro',
+    desc:"You're a fresh cup of mango sago: bright and sweet, and people feel better just being around you. You're kind to your friends, but you know exactly what you want and don't get pushed around. You have your down days too, but after a good night's sleep you're full of energy again.",
     cup:{liq:['#ffe27a','#ffc23d'],sago:1,dots:'#ff8a7a'}},
-  coco:{name:'生椰拿铁',theme:'#7fb6d8',light:'#e5f2fa',kw:['清醒派','效率担当','外冷内热'],rare:21,mate:'lemon',
-    desc:'你是一杯生椰拿铁，冷静、清醒、自带节奏感。别人还在纠结的时候你已经把计划排好了。看起来有点难接近，熟了之后才发现你其实超会照顾人，只是不爱挂在嘴上。',
+  coco:{name:'Coconut Latte',theme:'#7fb6d8',light:'#e5f2fa',kw:['Clear-Headed','Gets It Done','Cool but Caring'],rare:21,mate:'lemon',
+    desc:"You're a coconut latte: calm, clear-headed and always in your own rhythm. While others are still deciding, you've already made the plan. You can seem hard to approach at first, but once people know you, they find out how much you look after them. You just don't talk about it.",
     cup:{liq:['#f5ede2','#c9a27c'],bottom:'#fffdf8',bh:.42,flip:1}},
-  lemon:{name:'柠檬茶',theme:'#ffd23f',light:'#fff8d6',kw:['直球选手','社交达人','说走就走'],rare:24,mate:'coco',
-    desc:'你是一杯冰冰凉凉的手打柠檬茶，爽快、直接、有点小酸但很上头。有你在的局永远不冷场，想到什么就去做，从不内耗。偶尔说话太直，但大家都知道你没坏心眼。',
+  lemon:{name:'Lemon Tea',theme:'#ffd23f',light:'#fff8d6',kw:['Straight Shooter','Social Butterfly','Spontaneous'],rare:24,mate:'coco',
+    desc:"You're an ice-cold lemon tea: refreshing, direct, a little sour and totally addictive. No hangout is ever boring with you around. You act on your ideas and never overthink. Sometimes you're a bit too blunt, but everyone knows you mean well.",
     cup:{liq:['#f6cf72','#e3a338'],lemon:1}},
-  taro:{name:'芋泥波波',theme:'#b399e6',light:'#f1eafb',kw:['慢热','宅家能手','软糯内核'],rare:16,mate:'mango',
-    desc:'你是一杯芋泥波波，外表安安静静，内里绵密又丰富。你慢热，需要一点时间才会打开自己，但一旦认定了朋友就特别长情。宅在家的时间对你来说一点也不无聊，脑子里的小剧场能演好几季。',
+  taro:{name:'Taro Boba',theme:'#b399e6',light:'#f1eafb',kw:['Slow to Warm Up','Homebody','Soft at Heart'],rare:16,mate:'mango',
+    desc:"You're a taro boba: quiet on the outside, rich and creamy on the inside. You take time to open up, but once you call someone a friend, it's for life. Staying home is never boring for you, because the stories playing in your head could run for whole seasons.",
     cup:{liq:['#e8d8c6','#d9c3ad'],bottom:'#b89bd8',bh:.34,pearl:1}},
-  pearl:{name:'珍珠奶茶',theme:'#c98d5d',light:'#f7ece2',kw:['靠谱','念旧','老友担当'],rare:21,mate:'mango',
-    desc:'你是一杯经典珍珠奶茶，不花哨，但谁都离不开。你靠谱、念旧，喜欢熟悉的人和熟悉的店，朋友有事第一个想到的就是你。你的温柔是那种不声不响、一直都在的温柔。',
+  pearl:{name:'Pearl Milk Tea',theme:'#c98d5d',light:'#f7ece2',kw:['Reliable','Nostalgic','Loyal Friend'],rare:21,mate:'mango',
+    desc:"You're a classic pearl milk tea: nothing fancy, but nobody can do without you. You're dependable and sentimental, and you love familiar people and familiar places. When friends need help, you're the first one they call. Your kindness is the quiet kind that's always there.",
     cup:{liq:['#dcb895','#c48f63'],pearl:1}}
 };
 const Q=[
-  {q:'周末更想干嘛？',e:'#ffd6e3',o:[['窝在家追剧睡懒觉','taro'],['约朋友出去浪','lemon'],['去咖啡馆把待办清一清','coco'],['回那家常去的老店吃饭','pearl']]},
-  {q:'朋友迟到半小时，你会？',e:'#fff0b3',o:[['没事，刚好逛逛','mango'],['直接打电话催','lemon'],['早料到了，带了本书','coco'],['习惯了，他一直这样','pearl']]},
-  {q:'你的手机相册里最多的是？',e:'#c9f2e6',o:[['天空和晚霞','mango'],['和朋友的合照','lemon'],['工作截图和备忘','coco'],['猫猫狗狗表情包','taro']]},
-  {q:'点外卖时你通常？',e:'#e6dcff',o:[['先看评分再决定','coco'],['永远是那几家','pearl'],['随便点，踩雷也开心','lemon'],['纠结半小时，最后点了常吃的','taro']]},
-  {q:'朋友形容你最多的一个词是？',e:'#ffd6e3',o:[['温柔','mango'],['靠谱','pearl'],['好玩','lemon'],['冷静','coco']]},
-  {q:'理想的旅行方式是？',e:'#fff0b3',o:[['海边发呆一整天','mango'],['特种兵式打卡','lemon'],['提前做好详细攻略','coco'],['酒店躺平也算旅行','taro']]},
-  {q:'心情不好的时候，你会？',e:'#c9f2e6',o:[['吃顿好的就好了','pearl'],['找朋友吐槽一通','lemon'],['一个人安静待着','taro'],['戴上耳机出去走走','mango']]},
-  {q:'如果能拥有一个超能力？',e:'#e6dcff',o:[['瞬间移动','lemon'],['时间暂停','coco'],['治愈别人','mango'],['回到过去的某一天','pearl']]}
+  {q:'What would you rather do on the weekend?',e:'#ffd6e3',o:[['Binge a show and sleep in','taro'],['Go out with friends','lemon'],['Clear my to-do list at a café','coco'],['Eat at my usual favorite spot','pearl']]},
+  {q:'Your friend is 30 minutes late. You...',e:'#fff0b3',o:[["No worries, I'll look around",'mango'],['Call them right away','lemon'],['Saw it coming, brought a book','coco'],["Used to it, they're always late",'pearl']]},
+  {q:'What fills up your camera roll?',e:'#c9f2e6',o:[['Skies and sunsets','mango'],['Photos with friends','lemon'],['Work screenshots and notes','coco'],['Cat and dog memes','taro']]},
+  {q:'When you order takeout, you usually...',e:'#e6dcff',o:[['Check the ratings first','coco'],['Order from the same few places','pearl'],['Pick anything, even if it flops','lemon'],['Take forever, then get the usual','taro']]},
+  {q:'What word do your friends use for you most?',e:'#ffd6e3',o:[['Kind','mango'],['Reliable','pearl'],['Fun','lemon'],['Calm','coco']]},
+  {q:'What does your dream trip look like?',e:'#fff0b3',o:[['Chilling on a beach all day','mango'],['Seeing every sight, nonstop','lemon'],['Planning every detail ahead','coco'],['Staying in the hotel counts too','taro']]},
+  {q:"When you're feeling down, you...",e:'#c9f2e6',o:[['Treat yourself to good food','pearl'],['Vent to a friend','lemon'],['Spend some quiet time alone','taro'],['Put on headphones and take a walk','mango']]},
+  {q:'If you could have one superpower?',e:'#e6dcff',o:[['Teleportation','lemon'],['Freezing time','coco'],['Healing others','mango'],['Going back to one day in the past','pearl']]}
 ];
 const ICONS=[
   '<path d="M6 30h36v8a4 4 0 0 1-4 4H10a4 4 0 0 1-4-4z" fill="#ff9fbd" stroke="#2a2230" stroke-width="2.5"/><path d="M10 30V18a6 6 0 0 1 6-6h16a6 6 0 0 1 6 6v12" fill="#fff" stroke="#2a2230" stroke-width="2.5"/><circle cx="19" cy="22" r="2" fill="#2a2230"/><circle cx="29" cy="22" r="2" fill="#2a2230"/>',
@@ -256,7 +255,7 @@ $('#qback').onclick=()=>{if(idx>0&&!busy){idx--;renderQ()}};
 
 function mix(){
   show('vMix');
-  const tips=['正在加冰……','正在调整甜度……','正在摇匀你的性格……','马上就好！'];
+  const tips=['Adding ice...','Adjusting the sweetness...','Shaking up your personality...','Almost ready!'];
   let t=0;$('#mixTip').textContent=tips[0];
   const iv=setInterval(()=>{t++;if(t<tips.length)$('#mixTip').textContent=tips[t]},600);
   setTimeout(()=>{clearInterval(iv);result()},2400);
@@ -272,31 +271,33 @@ function result(){
   const app=$('#app');app.style.setProperty('--theme',r.theme);app.style.setProperty('--theme-l',r.light);
   $('#vResult').innerHTML=`
     <div class="poster">
-      <div class="ph"><div class="sun"></div><small>你的奶茶人格是</small><h2>${r.name}</h2><div class="cupbig">${cupSVG(r.cup)}</div></div>
+      <div class="ph"><div class="sun"></div><small>Your bubble tea personality is</small><h2>${r.name}</h2><div class="cupbig">${cupSVG(r.cup)}</div></div>
       <div class="pb">
         <div class="kw">${r.kw.map(k=>`<span>${k}</span>`).join('')}</div>
         <p class="desc">${r.desc}</p>
         <div class="meta">
-          <div><span class="pct">${r.rare}%</span><span><small>稀有度</small><b>和你一样</b></span></div>
-          <div>${cupSVG(m.cup)}<span><small>最配搭子</small><b>${m.name}</b></span></div>
+          <div><span class="pct">${r.rare}%</span><span><small>Rarity</small><b>of players</b></span></div>
+          <div>${cupSVG(m.cup)}<span><small>Best match</small><b>${m.name}</b></span></div>
         </div>
-        <div class="sig"><span>分享给朋友，看看 TA 是哪杯</span><b>测测你是哪杯奶茶</b></div>
+        <div class="sig"><span>Share it and see which one your friends are</span><b>Which Bubble Tea Are You?</b></div>
       </div>
     </div>
-    <div class="acts"><button class="cta" id="save">保存海报</button><button class="cta alt" id="again">再测一次</button></div>`;
+    <div class="acts"><button class="cta" id="save">Save Poster</button><button class="cta alt" id="again">Try Again</button></div>`;
   show('vResult');$('#vResult').scrollTop=0;
   $('#again').onclick=()=>show('vCover');
   $('#save').onclick=makePoster;
 }
 
 function svgImg(svg){return new Promise(r=>{const i=new Image();i.onload=()=>r(i);i.src='data:image/svg+xml;charset=utf-8,'+encodeURIComponent(svg.replace('<svg ','<svg xmlns="http://www.w3.org/2000/svg" '))})}
-function lines(ctx,text,w){const out=[];let line='';for(const ch of text){if(ctx.measureText(line+ch).width>w){out.push(line);line=ch}else line+=ch}out.push(line);return out}
+function lines(ctx,text,w){const out=[];let line='';for(const word of text.split(' ')){const t=line?line+' '+word:word;if(ctx.measureText(t).width>w&&line){out.push(line);line=word}else line=t}out.push(line);return out}
+function fit(ctx,text,w,size,font){while(size>14){ctx.font=font(size);if(ctx.measureText(text).width<=w)break;size-=2}return size}
 function rr(ctx,x,y,w,h,r){ctx.beginPath();ctx.roundRect(x,y,w,h,r)}
 async function makePoster(){
+  await document.fonts.load('600 40px Fredoka');
   const r=R[curKey],m=R[r.mate],W=750,c=document.createElement('canvas');
-  const sans0='"PingFang SC","Microsoft YaHei",sans-serif';const mx=c.getContext('2d');mx.font=`28px ${sans0}`;const dl=lines(mx,r.desc,W-200);
+  const sans0='"Segoe UI",-apple-system,Arial,sans-serif';const mx=c.getContext('2d');mx.font=`28px ${sans0}`;const dl=lines(mx,r.desc,W-200);
   const H=690+(dl.length-1)*50+50+250+52;c.width=W;c.height=H;
-  const x=c.getContext('2d'),ink='#2a2230',fun='"ZCOOL KuaiLe","Microsoft YaHei",sans-serif',sans='"PingFang SC","Microsoft YaHei",sans-serif';
+  const x=c.getContext('2d'),ink='#2a2230',fun='Fredoka,"Segoe UI",Arial,sans-serif',sans='"Segoe UI",-apple-system,Arial,sans-serif';
   x.fillStyle=r.light;x.fillRect(0,0,W,H);
   x.fillStyle=ink;rr(x,52,52,W-92,H-92,44);x.fill();
   x.fillStyle='#fff';rr(x,40,40,W-92,H-92,44);x.fill();x.lineWidth=6;x.strokeStyle=ink;x.stroke();
@@ -304,21 +305,21 @@ async function makePoster(){
   x.fillStyle='rgba(255,255,255,.3)';for(let i=0;i<W;i+=34)for(let j=40;j<540;j+=34){x.beginPath();x.arc(i,j,3.5,0,7);x.fill()}
   x.beginPath();x.arc(W/2-6,640,240,0,7);x.fill();x.restore();
   x.beginPath();x.moveTo(40,540);x.lineTo(W-52,540);x.stroke();
-  x.textAlign='center';x.font=`bold 26px ${sans}`;const tag='你的奶茶人格是',tw=x.measureText(tag).width+40;
+  x.textAlign='center';x.font=`bold 26px ${sans}`;const tag='Your bubble tea personality is',tw=x.measureText(tag).width+40;
   x.fillStyle=ink;rr(x,W/2-6-tw/2,80,tw,46,23);x.fill();x.fillStyle='#fff';x.fillText(tag,W/2-6,112);
-  x.font=`92px ${fun}`;x.lineJoin='round';x.lineWidth=10;x.strokeStyle=ink;x.fillStyle=ink;x.fillText(r.name,W/2,232);x.strokeText(r.name,W/2-6,226);x.fillStyle='#fff';x.fillText(r.name,W/2-6,226);
+  fit(x,r.name,600,92,z=>`600 ${z}px ${fun}`);x.lineJoin='round';x.lineWidth=10;x.strokeStyle=ink;x.fillStyle=ink;x.fillText(r.name,W/2,232);x.strokeText(r.name,W/2-6,226);x.fillStyle='#fff';x.fillText(r.name,W/2-6,226);
   const cup=await svgImg(cupSVG(r.cup));x.drawImage(cup,W/2-6-125,255,250,310);
-  x.font=`bold 26px ${sans}`;let kx=0;const kws=r.kw.map(k=>({k,w:x.measureText(k).width+40}));const tot=kws.reduce((s,k)=>s+k.w,0)+(kws.length-1)*16;kx=W/2-6-tot/2;
+  let kf=26,kws,tot;do{x.font=`bold ${kf}px ${sans}`;kws=r.kw.map(k=>({k,w:x.measureText(k).width+40}));tot=kws.reduce((s,k)=>s+k.w,0)+(kws.length-1)*16;kf-=2}while(tot>W-140&&kf>16);let kx=W/2-6-tot/2;
   kws.forEach(({k,w})=>{x.fillStyle=r.light;rr(x,kx,580,w,48,24);x.fill();x.lineWidth=4;x.strokeStyle=ink;x.stroke();x.fillStyle=ink;x.fillText(k,kx+w/2,613);kx+=w+16});
   x.textAlign='left';x.font=`28px ${sans}`;x.fillStyle='#4b3f48';dl.forEach((l,i)=>x.fillText(l,90,690+i*50));const ey=690+(dl.length-1)*50;
   const by=ey+50;x.lineWidth=4;x.strokeStyle=ink;
   rr(x,90,by,270,120,28);x.stroke();rr(x,384,by,270,120,28);x.stroke();
-  x.font=`64px ${fun}`;x.fillStyle=r.theme;x.fillText(r.rare+'%',112,by+82);x.lineWidth=1.5;x.strokeText(r.rare+'%',112,by+82);
-  x.font=`22px ${sans}`;x.fillStyle='#8f7f8a';x.fillText('稀有度',245,by+52);x.font=`bold 24px ${sans}`;x.fillStyle=ink;x.fillText('和你一样',245,by+86);
+  x.font=`600 62px ${fun}`;x.fillStyle=r.theme;x.fillText(r.rare+'%',108,by+82);x.lineWidth=1.5;x.strokeText(r.rare+'%',112,by+82);
+  x.font=`22px ${sans}`;x.fillStyle='#8f7f8a';x.fillText('Rarity',238,by+52);x.font=`bold 22px ${sans}`;x.fillStyle=ink;x.fillText('of players',238,by+86);
   const mc=await svgImg(cupSVG(m.cup));x.drawImage(mc,400,by+14,74,92);
-  x.font=`22px ${sans}`;x.fillStyle='#8f7f8a';x.fillText('最配你的搭子',486,by+52);x.font=`bold 28px ${sans}`;x.fillStyle=ink;x.fillText(m.name,486,by+88);
+  x.font=`22px ${sans}`;x.fillStyle='#8f7f8a';x.fillText('Best match',486,by+52);fit(x,m.name,155,28,z=>`bold ${z}px ${sans}`);x.fillStyle=ink;x.fillText(m.name,486,by+88);
   x.setLineDash([10,8]);x.strokeStyle='#e5d9df';x.lineWidth=3;x.beginPath();x.moveTo(90,by+160);x.lineTo(W-110,by+160);x.stroke();x.setLineDash([]);
-  x.font=`22px ${sans}`;x.fillStyle='#8f7f8a';x.fillText('分享给朋友，看看 TA 是哪杯',90,by+205);x.textAlign='right';x.font=`30px ${fun}`;x.fillStyle=ink;x.fillText('测测你是哪杯奶茶',W-110,by+207);
+  x.font=`22px ${sans}`;x.fillStyle='#8f7f8a';x.fillText('Share with friends!',90,by+205);x.textAlign='right';fit(x,'Which Bubble Tea Are You?',330,30,z=>`600 ${z}px ${fun}`);x.fillStyle=ink;x.fillText('Which Bubble Tea Are You?',W-110,by+207);
   const url=c.toDataURL('image/png');$('#posterImg').src=url;$('#dl').href=url;$('#modal').classList.add('on');
 }
 $('#mClose').onclick=()=>$('#modal').classList.remove('on');

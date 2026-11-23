@@ -1,9 +1,9 @@
 <!doctype html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>茶屿 · 点单小程序</title>
+<title>Boba Isle · Mobile Ordering</title>
 <style>
 :root{
   --pri:#12b892;
@@ -17,7 +17,7 @@
   --bg:#f5f7f8;
   --card:#fff;
   --line:#edf0f2;
-  --sans:-apple-system,"PingFang SC","Microsoft YaHei","Helvetica Neue",sans-serif;
+  --sans:-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
 }
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
 body{font-family:var(--sans);color:var(--ink);background:radial-gradient(circle at 15% 20%,#d9f6ec 0,transparent 45%),radial-gradient(circle at 85% 80%,#fff0d1 0,transparent 45%),#eef3f2;min-height:100vh;display:flex;align-items:center;justify-content:center;gap:90px;padding:40px}
@@ -27,12 +27,12 @@ svg{display:block}
 .intro{max-width:340px}
 .intro .brand{display:flex;align-items:center;gap:14px;margin-bottom:26px}
 .intro .brand .lg{width:56px;height:56px;border-radius:16px;background:var(--pri);display:grid;place-items:center;box-shadow:0 10px 24px rgba(18,184,146,.35)}
-.intro .brand b{font-size:30px;letter-spacing:4px}
+.intro .brand b{font-size:30px;letter-spacing:.5px}
 .intro h1{font-size:22px;font-weight:600;line-height:1.6;margin-bottom:14px}
 .intro p{color:var(--ink-2);font-size:15px;line-height:1.9}
 .intro ul{list-style:none;margin-top:24px;display:grid;gap:10px}
-.intro li{display:flex;align-items:center;gap:10px;font-size:14px;color:var(--ink-2)}
-.intro li::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--pri)}
+.intro li{display:flex;align-items:flex-start;gap:10px;line-height:1.5;font-size:14px;color:var(--ink-2)}
+.intro li::before{content:"";flex:none;width:6px;height:6px;border-radius:50%;background:var(--pri);margin-top:8px}
 
 .phone{width:390px;height:844px;border-radius:54px;background:#111;padding:12px;box-shadow:0 40px 80px rgba(20,60,50,.25),inset 0 0 0 2px #333;flex:none;position:relative}
 .screen{width:100%;height:100%;border-radius:42px;overflow:hidden;background:var(--bg);position:relative;display:flex;flex-direction:column}
@@ -43,9 +43,6 @@ svg{display:block}
 .wxbar{height:44px;flex:none;display:flex;align-items:center;justify-content:center;position:relative;background:#fff;font-size:17px;font-weight:600;z-index:5}
 .wxbar .back{position:absolute;left:10px;width:34px;height:34px;display:none;place-items:center}
 .wxbar.sub .back{display:grid}
-.capsule{position:absolute;right:10px;width:87px;height:32px;border-radius:16px;border:1px solid #e5e5e5;display:flex;align-items:center;background:rgba(255,255,255,.8)}
-.capsule span{flex:1;display:grid;place-items:center}
-.capsule i{width:1px;height:18px;background:#e5e5e5}
 
 .pages{flex:1;position:relative;overflow:hidden}
 .page{position:absolute;inset:0;display:flex;flex-direction:column;background:var(--bg);transition:transform .35s cubic-bezier(.3,.7,.3,1)}
@@ -58,7 +55,7 @@ svg{display:block}
 .slide img{width:100%;height:100%;object-fit:cover}
 .slide::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,0,0,.45),transparent 70%)}
 .slide .cap{position:absolute;left:20px;top:28px;color:#fff;z-index:1}
-.slide .cap b{font-size:22px;display:block;letter-spacing:1px}
+.slide .cap b{font-size:22px;display:block;letter-spacing:.2px}
 .slide .cap span{font-size:13px;opacity:.9}
 .slide .cap em{display:inline-block;margin-top:10px;font-style:normal;font-size:12px;background:var(--acc);color:#4a2e00;padding:3px 10px;border-radius:10px;font-weight:600}
 .dots{position:absolute;bottom:30px;left:20px;display:flex;gap:5px;z-index:2}
@@ -74,7 +71,7 @@ svg{display:block}
 
 .order{flex:1;display:flex;min-height:0;margin-top:12px;background:#fff;border-radius:18px 18px 0 0}
 .side{width:84px;flex:none;background:var(--bg);overflow-y:auto;border-top-left-radius:18px;padding-bottom:90px}
-.side button{display:block;width:100%;padding:18px 0;font-size:14px;color:var(--ink-2);position:relative;transition:all .2s}
+.side button{display:block;width:100%;padding:18px 4px;font-size:13px;line-height:1.25;color:var(--ink-2);position:relative;transition:all .2s}
 .side button.on{background:#fff;color:var(--ink);font-weight:600}
 .side button.on::before{content:"";position:absolute;left:0;top:50%;transform:translateY(-50%);width:4px;height:18px;border-radius:0 3px 3px 0;background:var(--pri)}
 .side button .n{position:absolute;top:10px;right:10px;min-width:16px;height:16px;border-radius:8px;background:var(--red);color:#fff;font-size:10px;line-height:16px;padding:0 4px;font-weight:600}
@@ -93,7 +90,7 @@ svg{display:block}
 .item .bt{margin-top:auto;display:flex;align-items:center;justify-content:space-between}
 .price{color:var(--ink);font-weight:700;font-size:17px}
 .price small{font-size:11px;margin-right:1px}
-.price em{font-style:normal;font-size:11px;color:var(--ink-3);font-weight:400;margin-left:2px}
+.price em{font-style:normal;font-size:11px;color:var(--ink-3);font-weight:400;margin-right:3px}
 .pick{background:var(--pri);color:#fff;font-size:12px;padding:5px 11px;border-radius:13px;font-weight:600;position:relative}
 .pick .n{position:absolute;top:-7px;right:-6px;min-width:16px;height:16px;border-radius:8px;background:var(--red);color:#fff;font-size:10px;line-height:16px;padding:0 4px;border:1.5px solid #fff;box-sizing:content-box}
 
@@ -185,12 +182,12 @@ svg{display:block}
 .ticket::before,.ticket::after{content:"";position:absolute;top:104px;width:20px;height:20px;border-radius:50%;background:var(--bg)}
 .ticket::before{left:-10px}.ticket::after{right:-10px}
 .ticket small{font-size:12px;color:var(--ink-3)}
-.ticket .no{font-size:52px;font-weight:800;letter-spacing:4px;color:var(--pri);line-height:1.2}
+.ticket .no{font-size:52px;font-weight:800;letter-spacing:2px;color:var(--pri);line-height:1.2}
 .ticket .dash{border-top:1px dashed var(--line);margin:22px 0 18px}
 .prog{display:flex;justify-content:space-between;position:relative;padding:0 10px}
 .prog::before{content:"";position:absolute;top:11px;left:40px;right:40px;height:2px;background:var(--line)}
 .prog::after{content:"";position:absolute;top:11px;left:40px;width:calc((100% - 80px)/2);height:2px;background:var(--pri)}
-.prog div{position:relative;z-index:1;font-size:12px;color:var(--ink-3);display:flex;flex-direction:column;align-items:center;gap:6px;width:60px}
+.prog div{position:relative;z-index:1;font-size:12px;color:var(--ink-3);display:flex;flex-direction:column;align-items:center;gap:6px;width:76px;text-align:center}
 .prog div i{width:24px;height:24px;border-radius:50%;background:#fff;border:2px solid var(--line)}
 .prog div.on{color:var(--ink);font-weight:600}
 .prog div.on i{background:var(--pri);border-color:var(--pri);box-shadow:0 0 0 4px var(--pri-l)}
@@ -219,15 +216,15 @@ svg{display:block}
 <aside class="intro">
   <div class="brand">
     <div class="lg"><svg width="30" height="30" viewBox="0 0 30 30" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 10h14l-2 15H10z"/><path d="M7 10h16M15 10l3-7"/></svg></div>
-    <b>茶屿</b>
+    <b>Boba Isle</b>
   </div>
-  <h1>奶茶店点单小程序</h1>
-  <p>从选品、规格、购物车到下单取餐的完整点单流程，界面完全按微信小程序规范设计，可直接对接门店收银与支付。</p>
+  <h1>Mobile ordering web app for a bubble tea shop</h1>
+  <p>A complete ordering flow, from browsing the menu and customizing drinks to checkout and a pickup number. It runs in any phone browser, so customers don't need to download an app.</p>
   <ul>
-    <li>分类联动滚动，菜单再长也好找</li>
-    <li>杯型、甜度、温度、加料自由组合，实时算价</li>
-    <li>自取 / 外送切换，满减优惠自动计算</li>
-    <li>下单后生成取餐号，制作进度一目了然</li>
+    <li>Category sidebar follows your scroll, so long menus stay easy to browse</li>
+    <li>Mix and match size, sweetness, ice and toppings with live pricing</li>
+    <li>Switch between pickup and delivery, with deals applied automatically</li>
+    <li>Get a pickup number and track your order's progress</li>
   </ul>
 </aside>
 
@@ -244,29 +241,25 @@ svg{display:block}
     </div>
     <div class="wxbar" id="wxbar">
       <button class="back" id="back"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg></button>
-      <span id="title">茶屿点单</span>
-      <div class="capsule">
-        <span><svg width="20" height="6" viewBox="0 0 20 6" fill="currentColor"><circle cx="3" cy="3" r="2.2"/><circle cx="10" cy="3" r="3"/><circle cx="17" cy="3" r="2.2"/></svg></span><i></i>
-        <span><svg width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="10" cy="10" r="8"/><circle cx="10" cy="10" r="3" fill="currentColor"/></svg></span>
-      </div>
+      <span id="title">Boba Isle</span>
     </div>
 
     <div class="pages">
       <section class="page" id="pMenu">
         <div class="banner">
           <div class="slides" id="slides">
-            <div class="slide"><img src="img/banner1.jpg" alt=""><div class="cap"><b>夏日双杯季</b><span>任意两杯第二杯半价</span><br><em>立即抢</em></div></div>
-            <div class="slide"><img src="img/banner2.jpg" alt=""><div class="cap"><b>芝芝莓莓 回归</b><span>当季草莓 · 现打芝士奶盖</span><br><em>限时供应</em></div></div>
-            <div class="slide"><img src="img/banner3.jpg" alt=""><div class="cap"><b>杨枝甘露 升级</b><span>新鲜芒果加量 30%</span><br><em>去尝尝</em></div></div>
+            <div class="slide"><img src="img/banner1.jpg" alt=""><div class="cap"><b>Summer Double Deal</b><span>2nd drink 50% off</span><br><em>Order now</em></div></div>
+            <div class="slide"><img src="img/banner2.jpg" alt=""><div class="cap"><b>Berry Cheese Is Back</b><span>Seasonal berries · fresh cheese foam</span><br><em>Limited time</em></div></div>
+            <div class="slide"><img src="img/banner3.jpg" alt=""><div class="cap"><b>Mango Sago, Upgraded</b><span>Now with 30% more fresh mango</span><br><em>Try it</em></div></div>
           </div>
           <div class="dots" id="dots"><i class="on"></i><i></i><i></i></div>
         </div>
         <div class="shop">
           <div>
-            <b>茶屿 · 海湾路店<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M9 6l6 6-6 6"/></svg></b>
-            <small>距离你 320m · 营业中 10:00-22:00</small>
+            <b>Harbor Rd Store<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M9 6l6 6-6 6"/></svg></b>
+            <small>0.2 mi away · Open until 10 PM</small>
           </div>
-          <div class="seg" id="mode"><button class="on" data-m="self">自取</button><button data-m="ship">外送</button></div>
+          <div class="seg" id="mode"><button class="on" data-m="self">Pickup</button><button data-m="ship">Delivery</button></div>
         </div>
         <div class="order">
           <nav class="side" id="side"></nav>
@@ -275,13 +268,13 @@ svg{display:block}
         <div class="cartbar" id="cartbar">
           <button class="bag" id="bag"><svg width="26" height="26" viewBox="0 0 30 30" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 10h14l-2 15H10z"/><path d="M7 10h16M15 10l3-7"/></svg><span class="n" id="bagN">0</span></button>
           <div class="sum" id="sum"></div>
-          <button class="go" id="go">去结算</button>
+          <button class="go" id="go">Checkout</button>
         </div>
       </section>
 
       <section class="page off" id="pCheck">
         <div class="ck" id="ck"></div>
-        <div class="paybar"><div class="s" id="payS"></div><button class="btn" id="submit">提交订单</button></div>
+        <div class="paybar"><div class="s" id="payS"></div><button class="btn" id="submit">Place Order</button></div>
       </section>
 
       <section class="page off" id="pOk">
@@ -290,10 +283,10 @@ svg{display:block}
     </div>
 
     <div class="tabbar" id="tabbar">
-      <button data-t="home"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M4 10l8-6 8 6v9a1 1 0 0 1-1 1h-4v-6H9v6H5a1 1 0 0 1-1-1z"/></svg>首页</button>
-      <button class="on" data-t="menu"><svg width="24" height="24" viewBox="0 0 30 30" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 10h14l-2 15H10z"/><path d="M7 10h16M15 10l3-7"/></svg>点单</button>
-      <button data-t="orders"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M9 8h6M9 12h6M9 16h3"/></svg>订单</button>
-      <button data-t="me"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="4"/><path d="M4 21c1-4 4.5-6 8-6s7 2 8 6"/></svg>我的</button>
+      <button data-t="home"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M4 10l8-6 8 6v9a1 1 0 0 1-1 1h-4v-6H9v6H5a1 1 0 0 1-1-1z"/></svg>Home</button>
+      <button class="on" data-t="menu"><svg width="24" height="24" viewBox="0 0 30 30" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 10h14l-2 15H10z"/><path d="M7 10h16M15 10l3-7"/></svg>Order</button>
+      <button data-t="orders"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M9 8h6M9 12h6M9 16h3"/></svg>My Orders</button>
+      <button data-t="me"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="4"/><path d="M4 21c1-4 4.5-6 8-6s7 2 8 6"/></svg>Account</button>
     </div>
 
     <div class="mask" id="mask"></div>
@@ -305,30 +298,30 @@ svg{display:block}
 
 <script>
 const CATS=[
-  {id:'sig',name:'招牌'},
-  {id:'fruit',name:'果茶'},
-  {id:'milk',name:'奶茶'},
-  {id:'tea',name:'纯茶'}
+  {id:'sig',name:'Signature'},
+  {id:'fruit',name:'Fruit Tea'},
+  {id:'milk',name:'Milk Tea'},
+  {id:'tea',name:'Classic Tea'}
 ];
 const ITEMS=[
-  {id:1,cat:'sig',name:'芋泥波波奶茶',desc:'手捣荔浦芋泥，配黑糖波波和厚乳茶底',price:18,tags:['人气No.1'],hot:1,cup:{bg:'#f1eafb',liq:['#e8d8c6','#d9c3ad'],bottom:'#b89bd8',bh:.32,pearl:1}},
-  {id:2,cat:'sig',name:'杨枝甘露',desc:'整颗芒果现切，红西柚粒与西米打底',price:19,tags:['招牌'],cup:{bg:'#fff4d6',liq:['#ffe27a','#ffc23d'],sago:1,dots:'#ff8a7a'}},
-  {id:3,cat:'sig',name:'屿岛满杯红柚',desc:'整杯红西柚果肉，茉莉绿茶底清爽回甘',price:17,tags:['新品'],cup:{bg:'#ffe9e5',liq:['#ffb3a2','#ff7a68'],flesh:'#ff6b57'}},
-  {id:4,cat:'fruit',name:'多肉葡萄',desc:'手剥巨峰葡萄，搭配芝士奶盖',price:19,tags:['人气'],hot:1,cup:{bg:'#f2e8fb',liq:['#c8a6ea','#8d5bbd'],cream:1,berry:'#6c3a99'}},
-  {id:5,cat:'fruit',name:'满杯百香果',desc:'双倍百香果，酸甜清爽，夏天必点',price:14,tags:[],cup:{bg:'#fff1db',liq:['#ffd06a','#ffad2e'],seed:1}},
-  {id:6,cat:'fruit',name:'手打柠檬茶',desc:'香水柠檬现场暴打，鸭屎香单丛茶底',price:13,tags:['爆款'],hot:1,cup:{bg:'#fdf6dc',liq:['#f6cf72','#e3a338'],lemon:1}},
-  {id:7,cat:'fruit',name:'芝芝莓莓',desc:'当季草莓与现打芝士，莓果控必选',price:21,tags:['限定'],cup:{bg:'#ffe8ef',liq:['#ffb8cb','#ff7c9c'],cream:1,berry:'#e8385e'}},
-  {id:8,cat:'milk',name:'珍珠奶茶',desc:'经典锡兰红茶底，现煮Q弹黑珍珠',price:13,tags:[],cup:{bg:'#f6ece2',liq:['#dcb895','#c48f63'],pearl:1}},
-  {id:9,cat:'milk',name:'黑糖波波鲜奶',desc:'冲绳黑糖挂壁，搭配纯牛乳',price:16,tags:['人气'],cup:{bg:'#f6ece2',liq:['#fbf6ef','#f1e6d8'],stripe:1,pearl:1}},
-  {id:10,cat:'milk',name:'抹茶拿铁',desc:'宇治抹茶现刷，分层倒入鲜奶',price:17,tags:[],cup:{bg:'#eaf5e3',liq:['#a9d38b','#7cb560'],bottom:'#f6f3ea',bh:.45,flip:1}},
-  {id:11,cat:'tea',name:'茉莉绿茶',desc:'七窨茉莉花茶，花香清雅',price:10,tags:[],cup:{bg:'#f0f7df',liq:['#e8f0b0','#cfe08a'],clear:1}},
-  {id:12,cat:'tea',name:'冻顶乌龙',desc:'中焙乌龙，焙火香与回甘',price:11,tags:[],cup:{bg:'#f8eedd',liq:['#e0a75c','#b9772e'],clear:1}}
+  {id:1,cat:'sig',name:'Taro Boba Milk Tea',desc:'Hand-mashed taro with brown sugar boba and creamy milk tea',price:6.5,tags:['#1 Best Seller'],hot:1,cup:{bg:'#f1eafb',liq:['#e8d8c6','#d9c3ad'],bottom:'#b89bd8',bh:.32,pearl:1}},
+  {id:2,cat:'sig',name:'Mango Pomelo Sago',desc:'Fresh-cut mango with pomelo bits and sago pearls',price:6.75,tags:['Signature'],cup:{bg:'#fff4d6',liq:['#ffe27a','#ffc23d'],sago:1,dots:'#ff8a7a'}},
+  {id:3,cat:'sig',name:'Island Grapefruit Tea',desc:'Loaded with ruby grapefruit over jasmine green tea',price:6.25,tags:['New'],cup:{bg:'#ffe9e5',liq:['#ffb3a2','#ff7a68'],flesh:'#ff6b57'}},
+  {id:4,cat:'fruit',name:'Grape Cheese Tea',desc:'Hand-peeled grapes topped with cheese foam',price:6.75,tags:['Popular'],hot:1,cup:{bg:'#f2e8fb',liq:['#c8a6ea','#8d5bbd'],cream:1,berry:'#6c3a99'}},
+  {id:5,cat:'fruit',name:'Passion Fruit Tea',desc:'Double passion fruit, sweet, tangy and refreshing',price:5.25,tags:[],cup:{bg:'#fff1db',liq:['#ffd06a','#ffad2e'],seed:1}},
+  {id:6,cat:'fruit',name:'Smashed Lemon Tea',desc:'Fresh lemons smashed to order over fragrant oolong',price:5,tags:['Trending'],hot:1,cup:{bg:'#fdf6dc',liq:['#f6cf72','#e3a338'],lemon:1}},
+  {id:7,cat:'fruit',name:'Strawberry Cheese Tea',desc:'Seasonal strawberries with fresh cheese foam',price:7.25,tags:['Limited'],cup:{bg:'#ffe8ef',liq:['#ffb8cb','#ff7c9c'],cream:1,berry:'#e8385e'}},
+  {id:8,cat:'milk',name:'Classic Pearl Milk Tea',desc:'Ceylon black tea with fresh-cooked chewy pearls',price:5,tags:[],cup:{bg:'#f6ece2',liq:['#dcb895','#c48f63'],pearl:1}},
+  {id:9,cat:'milk',name:'Brown Sugar Boba Milk',desc:'Brown sugar syrup swirls with fresh milk',price:5.75,tags:['Popular'],cup:{bg:'#f6ece2',liq:['#fbf6ef','#f1e6d8'],stripe:1,pearl:1}},
+  {id:10,cat:'milk',name:'Matcha Latte',desc:'Uji matcha whisked to order, layered over milk',price:6.25,tags:[],cup:{bg:'#eaf5e3',liq:['#a9d38b','#7cb560'],bottom:'#f6f3ea',bh:.45,flip:1}},
+  {id:11,cat:'tea',name:'Jasmine Green Tea',desc:'Light, floral and refreshing',price:4,tags:[],cup:{bg:'#f0f7df',liq:['#e8f0b0','#cfe08a'],clear:1}},
+  {id:12,cat:'tea',name:'Roasted Oolong',desc:'Medium-roast oolong with a smooth, toasty finish',price:4.25,tags:[],cup:{bg:'#f8eedd',liq:['#e0a75c','#b9772e'],clear:1}}
 ];
 const SPEC=[
-  {key:'size',name:'杯型',opts:[['中杯',0],['大杯',3]]},
-  {key:'sugar',name:'甜度',opts:[['标准糖',0],['七分糖',0],['五分糖',0],['三分糖',0],['不另加糖',0]]},
-  {key:'ice',name:'温度',opts:[['正常冰',0],['少冰',0],['去冰',0],['温热',0]]},
-  {key:'add',name:'加料',multi:1,tip:'可多选',opts:[['黑珍珠',2],['椰果',2],['芋圆',3],['布丁',3],['芝士奶盖',4]]}
+  {key:'size',name:'Size',opts:[['Medium',0],['Large',1]]},
+  {key:'sugar',name:'Sweetness',opts:[['100%',0],['70%',0],['50%',0],['30%',0],['0%',0]]},
+  {key:'ice',name:'Ice',opts:[['Regular Ice',0],['Less Ice',0],['No Ice',0],['Hot',0]]},
+  {key:'add',name:'Toppings',multi:1,tip:'Pick any',opts:[['Boba Pearls',.75],['Coconut Jelly',.75],['Taro Balls',1],['Pudding',1],['Cheese Foam',1.25]]}
 ];
 
 let uid=0;
@@ -357,11 +350,12 @@ function cupSVG(c){
   s+=`<rect x="10" y="${top}" width="9" height="90" fill="#fff" opacity=".28" transform="skewX(6)"/></g>`;
   s+=`<path d="M${tl} ${top}L${tr} ${top}L${br} ${bot}Q50 ${bot+4} ${bl} ${bot}Z" fill="none" stroke="rgba(0,0,0,.12)" stroke-width="1.2"/>`;
   s+=`<rect x="10" y="${top-6}" width="80" height="7" rx="3.5" fill="#fff" stroke="rgba(0,0,0,.1)"/>`;
-  s+=`<rect x="31" y="78" width="38" height="16" rx="8" fill="#fff" opacity=".92"/><text x="50" y="89.5" text-anchor="middle" font-size="9.5" font-weight="700" fill="#12b892" font-family="PingFang SC,Microsoft YaHei,sans-serif">茶屿</text>`;
+  s+=`<rect x="31" y="78" width="38" height="16" rx="8" fill="#fff" opacity=".92"/><text x="50" y="89.5" text-anchor="middle" font-size="9.5" font-weight="700" fill="#12b892" font-family="Segoe UI,Arial,sans-serif">BOBA</text>`;
   return s+'</svg>';
 }
 
 const $=s=>document.querySelector(s);
+const m=n=>'$'+n.toFixed(2);
 const screen=$('#screen');
 const state={mode:'self',cart:[],spec:null,note:new Set()};
 
@@ -381,7 +375,7 @@ function renderMenu(){
         <div class="nm">${i.name}</div>
         <div class="ds">${i.desc}</div>
         <div class="tags">${i.tags.map(t=>`<span class="${i.hot?'hot':''}">${t}</span>`).join('')}</div>
-        <div class="bt"><span class="price"><small>¥</small>${i.price}<em>起</em></span><button class="pick" data-id="${i.id}">选规格<span class="n" hidden></span></button></div>
+        <div class="bt"><span class="price"><em>from</em>${m(i.price)}</span><button class="pick" data-id="${i.id}">Choose<span class="n" hidden></span></button></div>
       </div>
     </div>`).join('')).join('');
 }
@@ -400,12 +394,12 @@ function closeSheets(){mask.classList.remove('show');document.querySelectorAll('
 mask.onclick=closeSheets;
 
 function specPrice(item,sel){let p=item.price;SPEC.forEach(g=>{const v=sel[g.key];(g.multi?[...v]:[v]).forEach(n=>{const o=g.opts.find(o=>o[0]===n);if(o)p+=o[1]})});return p}
-function specText(sel){return [sel.size,sel.sugar,sel.ice,...sel.add].join(' / ')}
+function specText(sel){return [sel.size,sel.sugar+' sugar',sel.ice,...sel.add].join(' / ')}
 
 function openSpec(id,from){
   const item=ITEMS.find(i=>i.id===id);
-  state.spec={item,from,qty:1,sel:{size:'中杯',sugar:'标准糖',ice:'正常冰',add:new Set()}};
-  if(item.cat==='tea')state.spec.sel.sugar='不另加糖';
+  state.spec={item,from,qty:1,sel:{size:'Medium',sugar:'100%',ice:'Regular Ice',add:new Set()}};
+  if(item.cat==='tea')state.spec.sel.sugar='0%';
   renderSpec();openSheet($('#specSheet'));
 }
 function renderSpec(){
@@ -414,11 +408,11 @@ function renderSpec(){
   $('#specSheet').innerHTML=`
     <button class="x" data-close><svg width="14" height="14" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
     <div class="spec-hd"><div class="thumb" style="background:${item.cup.bg}">${cupSVG(item.cup)}</div><div><b>${item.name}</b><p>${item.desc}</p></div></div>
-    <div class="spec-bd">${SPEC.map(g=>`<div class="grp"><h5>${g.name}${g.tip?`<small>${g.tip}</small>`:''}</h5><div class="chips">${g.opts.map(([n,p])=>{const on=g.multi?sel.add.has(n):sel[g.key]===n;return `<button class="chip ${on?'on':''}" data-g="${g.key}" data-v="${n}">${n}${p?`<small>+¥${p}</small>`:''}</button>`}).join('')}</div></div>`).join('')}</div>
+    <div class="spec-bd">${SPEC.map(g=>`<div class="grp"><h5>${g.name}${g.tip?`<small>${g.tip}</small>`:''}</h5><div class="chips">${g.opts.map(([n,p])=>{const on=g.multi?sel.add.has(n):sel[g.key]===n;return `<button class="chip ${on?'on':''}" data-g="${g.key}" data-v="${n}">${n}${p?`<small>+${m(p)}</small>`:''}</button>`}).join('')}</div></div>`).join('')}</div>
     <div class="spec-ft">
-      <div class="l"><span class="price"><small>¥</small>${unit*qty}</span><div class="sel">${specText(sel)}</div></div>
+      <div class="l"><span class="price">${m(unit*qty)}</span><div class="sel">${specText(sel)}</div></div>
       <div class="step"><button data-q="-1">-</button><span>${qty}</span><button class="add" data-q="1">+</button></div>
-      <button class="btn" data-add>加入购物车</button>
+      <button class="btn" data-add>Add to Cart</button>
     </div>`;
 }
 $('#specSheet').onclick=e=>{
@@ -446,15 +440,15 @@ function fly(from){
 const count=()=>state.cart.reduce((s,c)=>s+c.qty,0);
 const goods=()=>state.cart.reduce((s,c)=>s+c.qty*c.unit,0);
 function bill(){
-  const g=goods(),pack=count(),ship=state.mode==='ship'?4:0;
-  const disc=g>=40?8:g>=25?4:0;
-  return {g,pack,ship,disc,pay:g+pack+ship-disc};
+  const g=goods(),ship=state.mode==='ship'?2.99:0;
+  const disc=g>=30?5:g>=18?2:0;
+  return {g,ship,disc,pay:g+ship-disc};
 }
 function renderCart(){
   const n=count(),bar=$('#cartbar');
   bar.classList.toggle('has',n>0);$('#bagN').textContent=n;
   const b=bill();
-  $('#sum').innerHTML=n?`<b>¥${b.g}</b><small>${b.disc?`已享满减 -¥${b.disc}`:`再买 ¥${25-b.g} 可减 ¥4`}</small>`:`<small style="font-size:13px">未选购商品</small><small>${state.mode==='ship'?'外送另需配送费 ¥4':'到店自取 免排队'}</small>`;
+  $('#sum').innerHTML=n?`<b>${m(b.g)}</b><small>${b.disc?`Deal applied: -${m(b.disc)}`:`Add ${m(18-b.g)} more to save $2`}</small>`:`<small style="font-size:13px">Your cart is empty</small><small>${state.mode==='ship'?'Delivery fee $2.99':'Pickup · skip the line'}</small>`;
   const per={},perCat={};
   state.cart.forEach(c=>{per[c.item.id]=(per[c.item.id]||0)+c.qty;perCat[c.item.cat]=(perCat[c.item.cat]||0)+c.qty});
   document.querySelectorAll('.pick').forEach(p=>{const v=per[p.dataset.id],s=p.querySelector('.n');s.hidden=!v;s.textContent=v||''});
@@ -466,13 +460,13 @@ renderCart();
 function renderCartSheet(){
   if(!state.cart.length){closeSheets();return}
   $('#cartSheet').innerHTML=`
-    <div class="cart-hd"><b>已选商品</b><button data-clear><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h16M9 7V4h6v3M6 7l1 13h10l1-13"/></svg>清空</button></div>
+    <div class="cart-hd"><b>Your Cart</b><button data-clear><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h16M9 7V4h6v3M6 7l1 13h10l1-13"/></svg>Clear</button></div>
     <div class="cart-bd">${state.cart.map((c,i)=>`
       <div class="crow"><div class="thumb" style="background:${c.item.cup.bg}">${cupSVG(c.item.cup)}</div>
-      <div class="mid"><b>${c.item.name}</b><small>${c.text}</small><span class="price"><small>¥</small>${c.unit}</span></div>
+      <div class="mid"><b>${c.item.name}</b><small>${c.text}</small><span class="price">${m(c.unit)}</span></div>
       <div class="step"><button data-i="${i}" data-q="-1">-</button><span>${c.qty}</span><button class="add" data-i="${i}" data-q="1">+</button></div></div>`).join('')}</div>`;
 }
-$('#bag').onclick=()=>{if(!state.cart.length)return toast('购物车还是空的');const s=$('#cartSheet');if(s.classList.contains('show'))return closeSheets();renderCartSheet();openSheet(s)};
+$('#bag').onclick=()=>{if(!state.cart.length)return toast('Your cart is empty');const s=$('#cartSheet');if(s.classList.contains('show'))return closeSheets();renderCartSheet();openSheet(s)};
 $('#cartSheet').onclick=e=>{
   const t=e.target.closest('button');if(!t)return;
   if(t.dataset.clear!==undefined){state.cart=[];renderCart();closeSheets();return}
@@ -481,34 +475,33 @@ $('#cartSheet').onclick=e=>{
 
 const stack=['pMenu'];
 function go(id,title){$('#'+stack[stack.length-1]);stack.push(id);$('#'+id).classList.remove('off');setBar(title)}
-function backTo(){if(stack.length<2)return;const cur=stack.pop();$('#'+cur).classList.add('off');setBar(stack.length>1?'确认订单':'茶屿点单')}
+function backTo(){if(stack.length<2)return;const cur=stack.pop();$('#'+cur).classList.add('off');setBar(stack.length>1?'Checkout':'Boba Isle')}
 function setBar(t){$('#title').textContent=t;$('#wxbar').classList.toggle('sub',stack.length>1&&stack[stack.length-1]!=='pOk');$('#tabbar').style.display=stack.length>1?'none':''}
 $('#back').onclick=backTo;
 
-$('#go').onclick=()=>{if(!state.cart.length)return toast('先选一杯喜欢的吧');closeSheets();renderCheck();go('pCheck','确认订单')};
+$('#go').onclick=()=>{if(!state.cart.length)return toast('Pick a drink first!');closeSheets();renderCheck();go('pCheck','Checkout')};
 
 function renderCheck(){
   const b=bill(),self=state.mode==='self';
   $('#ck').innerHTML=`
     <div class="box">
-      <div class="seg" id="ckMode" style="width:max-content;margin-bottom:14px"><button class="${self?'on':''}" data-m="self">到店自取</button><button class="${self?'':'on'}" data-m="ship">外送到家</button></div>
-      <div class="addr">${self?`<b>茶屿 · 海湾路店</b><small>海湾路 27 号一楼 · 距你 320m</small>`:`<b>星港小区 3 栋 1202</b><small>林同学 138****0000</small>`}</div>
-      <div class="when">${self?`<button class="chip on">立即取餐</button><button class="chip">预约 30 分钟后</button>`:`<button class="chip on">尽快送达 约 35 分钟</button>`}</div>
+      <div class="seg" id="ckMode" style="width:max-content;margin-bottom:14px"><button class="${self?'on':''}" data-m="self">Pickup</button><button class="${self?'':'on'}" data-m="ship">Delivery</button></div>
+      <div class="addr">${self?`<b>Boba Isle · Harbor Rd</b><small>27 Harbor Rd · 0.2 mi away</small>`:`<b>88 Starport Ave, Apt 1202</b><small>Alex L. · (555) 010-0000</small>`}</div>
+      <div class="when">${self?`<button class="chip on">ASAP</button><button class="chip">In 30 min</button>`:`<button class="chip on">ASAP · about 35 min</button>`}</div>
     </div>
     <div class="box">
-      <h6>商品清单<span>共 ${count()} 杯</span></h6>
-      ${state.cart.map(c=>`<div class="crow"><div class="thumb" style="background:${c.item.cup.bg}">${cupSVG(c.item.cup)}</div><div class="mid"><b>${c.item.name}</b><small>${c.text}</small></div><div style="text-align:right"><div class="price"><small>¥</small>${c.unit*c.qty}</div><small style="color:var(--ink-3);font-size:12px">x${c.qty}</small></div></div>`).join('')}
-      <div class="line"><span>商品金额</span><span>¥${b.g}</span></div>
-      <div class="line"><span>打包费</span><span>¥${b.pack}</span></div>
-      ${b.ship?`<div class="line"><span>配送费</span><span>¥${b.ship}</span></div>`:''}
-      <div class="line"><span class="cp"><i>满减</i>满 25 减 4 · 满 40 减 8</span><span class="neg">${b.disc?'-¥'+b.disc:'未满足'}</span></div>
-      <div class="total">实付 <b>¥${b.pay}</b></div>
+      <h6>Your Items<span>${count()} drink${count()>1?'s':''}</span></h6>
+      ${state.cart.map(c=>`<div class="crow"><div class="thumb" style="background:${c.item.cup.bg}">${cupSVG(c.item.cup)}</div><div class="mid"><b>${c.item.name}</b><small>${c.text}</small></div><div style="text-align:right"><div class="price">${m(c.unit*c.qty)}</div><small style="color:var(--ink-3);font-size:12px">x${c.qty}</small></div></div>`).join('')}
+      <div class="line"><span>Subtotal</span><span>${m(b.g)}</span></div>
+      ${b.ship?`<div class="line"><span>Delivery fee</span><span>${m(b.ship)}</span></div>`:''}
+      <div class="line"><span class="cp"><i>DEAL</i>$2 off $18 · $5 off $30</span><span class="neg">${b.disc?'-'+m(b.disc):'Not yet'}</span></div>
+      <div class="total">Total <b>${m(b.pay)}</b></div>
     </div>
     <div class="box">
-      <h6>备注</h6>
-      <div class="note">${['不要吸管','分开打包','少冰一点','多加冰'].map(n=>`<button class="chip ${state.note.has(n)?'on':''}" data-n="${n}">${n}</button>`).join('')}</div>
+      <h6>Notes</h6>
+      <div class="note">${['No straw','Bag separately','Light ice','Extra ice'].map(n=>`<button class="chip ${state.note.has(n)?'on':''}" data-n="${n}">${n}</button>`).join('')}</div>
     </div>`;
-  $('#payS').innerHTML=`实付 <b>¥${b.pay}</b>${b.disc?`<small>已优惠 ¥${b.disc}</small>`:''}`;
+  $('#payS').innerHTML=`Total <b>${m(b.pay)}</b>${b.disc?`<small>You saved ${m(b.disc)}</small>`:''}`;
 }
 $('#ck').onclick=e=>{
   const t=e.target.closest('button');if(!t)return;
@@ -518,26 +511,26 @@ $('#ck').onclick=e=>{
 };
 
 $('#submit').onclick=()=>{
-  const no=(state.mode==='self'?'A':'W')+String(Math.floor(Math.random()*900)+100);
+  const no=(state.mode==='self'?'P':'D')+String(Math.floor(Math.random()*900)+100);
   const self=state.mode==='self';
   $('#ok').innerHTML=`
     <div class="big"><svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div>
-    <h2>下单成功</h2>
-    <div class="sub">${self?'请留意叫号，凭取餐号到店取餐':'骑手接单后会第一时间送达'}</div>
+    <h2>Order placed!</h2>
+    <div class="sub">${self?"We'll call your number when it's ready":'A driver will bring it to you soon'}</div>
     <div class="ticket">
-      <small>${self?'取餐号':'订单号'}</small>
+      <small>${self?'Pickup number':'Order number'}</small>
       <div class="no">${no}</div>
-      <small>共 ${count()} 杯 · 实付 ¥${bill().pay}</small>
+      <small>${count()} drink${count()>1?'s':''} · Paid ${m(bill().pay)}</small>
       <div class="dash"></div>
-      <div class="prog"><div class="on"><i></i>已下单</div><div class="on cur"><i></i>制作中</div><div><i></i>${self?'待取餐':'配送中'}</div></div>
+      <div class="prog"><div class="on"><i></i>Placed</div><div class="on cur"><i></i>Making</div><div><i></i>${self?'Ready':'On the way'}</div></div>
     </div>
-    <div class="eta">预计 <b>${self?'12':'35'} 分钟</b>后${self?'可取':'送达'}，前面还有 3 单</div>
-    <button class="btn again" id="again">再来一单</button>`;
-  go('pOk','订单详情');
-  $('#again').onclick=()=>{state.cart=[];state.note.clear();renderCart();['pOk','pCheck'].forEach(id=>$('#'+id).classList.add('off'));stack.length=1;setBar('茶屿点单');list.scrollTop=0};
+    <div class="eta">${self?'Ready':'Arriving'} in about <b>${self?'12':'35'} min</b> · 3 orders ahead of you</div>
+    <button class="btn again" id="again">Order Again</button>`;
+  go('pOk','Order Details');
+  $('#again').onclick=()=>{state.cart=[];state.note.clear();renderCart();['pOk','pCheck'].forEach(id=>$('#'+id).classList.add('off'));stack.length=1;setBar('Boba Isle');list.scrollTop=0};
 };
 
-$('#tabbar').onclick=e=>{const b=e.target.closest('button');if(b&&b.dataset.t!=='menu')toast('演示版仅开放点单页')};
+$('#tabbar').onclick=e=>{const b=e.target.closest('button');if(b&&b.dataset.t!=='menu')toast('Only the Order page is open in this demo')};
 </script>
 </body>
 </html>
